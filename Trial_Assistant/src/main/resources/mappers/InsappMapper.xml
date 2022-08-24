@@ -63,13 +63,15 @@
 	</select>
 	
 	<select id="getInsappContent" resultMap="TotalApplierMap">
-		SELECT ud.joinname, ub.joinid, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
-        		ins.ins_name, ins.ins_phone, ins.ins_addr
-		FROM userdetail ud INNER JOIN Userbasic ub 
-				ON ud.joinsocnum = ub.joinsocnum
-    		INNER JOIN Ins ins
-        		ON ub.joinid = ins.joinid
-		WHERE ub.joinid = #{JoinId}
+		SELECT ud.joinname, ta.join_id, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
+		        ins.ins_name, ins.ins_phone, ins.ins_addr
+		FROM totalapplier ta INNER JOIN Ins ins
+		ON ta.join_id = ins.joinid
+		INNER JOIN userbasic ub
+		ON ins.joinid = ub.joinid
+		INNER JOIN userdetail ud
+		ON ub.joinsocnum = ud.joinsocnum
+		WHERE ta.app_num_seq = #{AppNum}
 	</select>
 	
 	<update id="updateInsapp1">

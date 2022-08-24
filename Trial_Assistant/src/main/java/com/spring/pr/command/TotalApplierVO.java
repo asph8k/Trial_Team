@@ -43,5 +43,13 @@ public class TotalApplierVO {
 	//추가된 변수
 	private String appInsName;
 	private String appInsPhone;
+	private String appJoinName;
+	private String appJoinPw;
+	private String appJoinPhone;
+	private String appJoinEmail;
+	private String appJoinGen;
+	private String appJoinSocNum;
+	private String appJoinAddrBasic;
+	private String appJoinAddrDetail;
 
 }

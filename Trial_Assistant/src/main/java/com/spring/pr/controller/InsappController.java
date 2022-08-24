@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.insapp.service.IInsappService;
 import com.spring.pr.util.PageCreator;
-import com.spring.pr.util.PageCreator;
 import com.spring.pr.util.SearchVO;
 
 @Controller
@@ -36,7 +35,7 @@ public class InsappController {
 		model.addAttribute("insapplist", list);
 		model.addAttribute("pc", pc);
 		
-		return "/ins/insappList";
+		return "/insapp/insappList";
 	}
 	
 	// 기관 신청자 상세보기 요청 처리
