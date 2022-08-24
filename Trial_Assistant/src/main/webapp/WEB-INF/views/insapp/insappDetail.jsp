@@ -216,6 +216,11 @@ textarea{
 
 </style>
 
+<!-- html 화면을 pdf로 파일출력을 위한 라이브러리 -->
+<script src="<c:url value='/js/jspdf.min.js' />"></script>
+<script src="<c:url value='/js/bluebird.min.js' />"></script>
+<script src="<c:url value='/js/html2canvas.min.js' />"></script>
+
 </head>
 <body>
 
@@ -232,12 +237,12 @@ textarea{
                   
                   <ul class="list-unstyled templatemo-accordion">
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList?page=${param.page}&cpp=10"/>'">
                           	등재 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=${param.page}&cpp=10"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
@@ -262,7 +267,6 @@ textarea{
             </div>
 
     <!-- Start Categories of The Month -->
-    <form class="form-total">
         <section class = "py-3 total-sec">
 
         <div class="table-box col-lg second-section" >
@@ -273,27 +277,28 @@ textarea{
 
             <div>
                 <div>
+                <form name="DetailInsappForm" method="post">
                     <div>
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appInsName}" readonly>
 
                             <span class="input-group-text">아이디</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.joinId}" readonly>
 
                             <span class="input-group-text ">주민등록번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appJoinSocNum}" readonly>
 
                         </div>   
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">핸드폰 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appInsPhone}" readonly>
 
                             <span class="input-group-text">E-MAIL</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appJoinEmail}" readonly>
 
                         </div> 
 
@@ -303,47 +308,93 @@ textarea{
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기본주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appJoinAddrBasic}" readonly>
 
                             <span class="input-group-text">상세주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appJoinAddrDetail}" readonly>                
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기관 이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appInsName}" readonly>
 
                             <span class="input-group-text">기관 전화번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appInsPhone}" readonly>                
                             
-                            <span class="input-group-text">기관 주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <span class="input-group-text">기관 주소</span> 
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${insappDet.appInsAddr}" readonly>                
                             <!-- 위에서 주소를 받는데 기관 주소는 왜 들어가지? -->
+                        </div>
+                        <div style=" width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
+                        	신청자 메모
                         </div> 
-
+                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:500px;" readonly>
+                        	${insappDet.appMemo}
+                        </textarea>
+					</form>
                     </div>
                     
                 </div>
 
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
-                    <input type="file" class = "file-btn" aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="button" id="savePdf">파일 출력</button>
 
-                    <button class="btn btn-outline-secondary" type="file" id="inputGroupFileAddon04">파일 출력</button>
-
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">삭제</button>
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href= '<c:url value="/insapp/insappUpdate"/>'">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="delInsappBtn">삭제</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href= '<c:url value="/insapp/insappUpdate/${insappDet.appNum}?page=${param.page}&cpp=10"/>'">수정</button>
                 </div>
                 
             </div>
             
     </section>
-</form>
+
 </div>
 	
 	<%@ include file="../include/footer1.jsp"%>
+	
+		<script>
+	
+	$(function() {
+		//$('#updateBtn').click(function(){			
+		//	location.href='<c:url value="/ins/insUpdate?page=${param.page}" />';
+		//});
+		
+		$('#delInsappBtn').click(function() {
+			if(confirm("삭제하시겠습니까?")) {
+				$('form[name=DetailInsappForm]').attr('action', '<c:url value="/insapp/insappDelete/${insappDet.appNum}"/>');
+				$('form[name=DetailInsappForm]').submit();
+			}		
+		});
+	});
+	
+	var doc = new jsPDF();
+	//var specialElementHandlers = {
+	//    '#editor': function(element, renderer) {
+	//        return true;
+	//    }
+	//}
+	
+	$('#savePdf').click(function() {
+		console.log('pdf button click event!');
+	    html2canvas($(".py-3"), {
+	        onrendered : function(canvas) {
+	            // 한글깨짐현상때문에 jpeg->jspdf 전환
+	            var imgData = canvas.toDataURL('image/jpeg');
+	            var pageWidth = 210;
+	            var pageHeight = pageWidth * 1.414;
+	            var imgWidth = pageWidth - 20;
+	            var imgHeight = $('.py-3').height() * imgWidth / $('.py-3').width();
+	            var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
+	            doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+	            doc.save('기관추천조력자.pdf');
+	        }
+		}
+	 )
+	});
+	
+	</script>
 
 </body>
 </html>

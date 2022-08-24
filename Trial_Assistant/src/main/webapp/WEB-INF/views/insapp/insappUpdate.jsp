@@ -227,12 +227,12 @@ textarea{
                   
                   <ul class="list-unstyled templatemo-accordion">
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList?page=${param.page}&cpp=10"/>'">
                           	등재 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=${param.page}&cpp=10"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
@@ -257,7 +257,6 @@ textarea{
             </div>
 
    <!-- Start Categories of The Month -->
-    <form class="form-total">
         <section class = "py-3 total-sec">
 
         <div class="table-box col-lg second-section" >
@@ -268,27 +267,28 @@ textarea{
 
             <div>
                 <div>
+                <form action="<c:url value='/insapp/insappUpdate'/>" name="updateForm" method="post">
                     <div>
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" name="appInsName" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appInsName}" readonly>
 
                             <span class="input-group-text">아이디</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" name="JoinId" aria-label="Text input with segmented dropdown button" value="${insappUpdt.joinId}" readonly>
 
                             <span class="input-group-text ">주민등록번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" name="appJoinSocNum" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appJoinSocNum}" readonly>
 
                         </div>   
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">핸드폰 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" name="appInsPhone" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appInsPhone}" readonly>
 
                             <span class="input-group-text">E-MAIL</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" name="appJoinEmail" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appJoinEmail}" readonly>
 
                         </div> 
 
@@ -298,25 +298,31 @@ textarea{
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기본주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" name="appJoinAddrBasic" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appJoinAddrBasic}" readonly>
 
                             <span class="input-group-text">상세주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <input type="text" class="form-control" name="appJoinAddrDetail" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appJoinAddrDetail}" readonly>                
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기관 이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" name="appInsName" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appInsName}" readonly>
 
                             <span class="input-group-text">기관 전화번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <input type="text" class="form-control" name="appInsPhone" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appInsPhone}" readonly>                
                             
                             <span class="input-group-text">기관 주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">                
+                            <input type="text" class="form-control" name="appInsAddr" aria-label="Text input with segmented dropdown button" value="${insappUpdt.appInsAddr}" readonly>                
+                        </div>
+                        <div style=" width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
+                        	신청자 메모
                         </div> 
-
+                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:500px;" name="AppMemo">
+                        	${insappUpdt.appMemo}
+                        </textarea>
+					</form>
                     </div>
                     
                 </div>
@@ -324,17 +330,26 @@ textarea{
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
 
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href= '<c:url value="/insapp/insappDetail"/>'">취소</button>
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href= '<c:url value="/insapp/insappDetail/${insappUpdt.appNum}?page=${param.page}"/>'">취소</button>
+                    <button class="btn btn-outline-secondary" type="button" id="updateInsappBtn">수정</button>
                 </div>
                 
             </div>
             
     </section>
-</form>
 </div>
 	
 	<%@ include file="../include/footer1.jsp"%>
+	
+		<script>
+		
+		$(function() {
+			$('#updateInsappBtn').click(function() {
+				document.updateForm.submit();
+			});
+		});
+	
+	</script>
 
 </body>
 </html>

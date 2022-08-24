@@ -253,7 +253,7 @@ form{
             <div>
                 <div>
                     <div>
-                    <form action="<c:url value='/ins/insUpdate2'/>" name="updateForm" method="post">
+                    <form action="<c:url value='/ins/insUpdate'/>" name="updateForm" method="post">
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기관 이름</span>

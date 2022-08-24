@@ -29,20 +29,17 @@ public class InsappService implements IInsappService {
 
 	@Override
 	public TotalApplierVO getInsappContent(int ANum) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getInsappContent(ANum);
 	}
 
 	@Override
-	public void updateInsapp(InsappVO vo) {
-		// TODO Auto-generated method stub
-
+	public void updateInsapp(TotalApplierVO tvo) {
+		mapper.updateInsapp(tvo);
 	}
 
 	@Override
 	public void deleteInsapp(int AppNum) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }

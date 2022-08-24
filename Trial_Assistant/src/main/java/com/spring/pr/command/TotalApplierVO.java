@@ -39,6 +39,7 @@ public class TotalApplierVO {
 	private Timestamp AppDate;
 	private String AppClassification;
 	private String AppName;
+	private String AppMemo;
 	
 	//추가된 변수
 	private String appInsName;
@@ -51,5 +52,6 @@ public class TotalApplierVO {
 	private String appJoinSocNum;
 	private String appJoinAddrBasic;
 	private String appJoinAddrDetail;
+	private String appInsAddr;
 
 }

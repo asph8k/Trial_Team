@@ -19,7 +19,7 @@ public interface IInsappService {
 	TotalApplierVO getInsappContent(int ANum);
 	
 	//기관 신청자 수정
-	void updateInsapp(InsappVO vo);
+	void updateInsapp(TotalApplierVO tvo);
 	
 	//기관 신청자 삭제
 	void deleteInsapp(int AppNum);

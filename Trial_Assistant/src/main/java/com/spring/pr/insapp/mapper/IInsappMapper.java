@@ -21,10 +21,7 @@ public interface IInsappMapper {
 	TotalApplierVO getInsappContent(int ANum);
 	
 	//기관 신청자 수정(userdetail 테이블)
-	void updateInsapp1(UserDetailVO vo);
-	
-	//기관 신청자 수정(ins 테이블)
-	void updateInsapp2(InsVO vo);
+	void updateInsapp(TotalApplierVO tvo);
 	
 	//기관 신청자 삭제(userdetail 테이블)
 	void deleteInsapp1(String JoinSocNum);

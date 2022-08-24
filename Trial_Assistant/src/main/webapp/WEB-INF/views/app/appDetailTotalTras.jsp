@@ -213,6 +213,7 @@ form {
 }
 </style>
 
+<!-- html 화면을 pdf로 파일출력을 위한 라이브러리 -->
 <script src="<c:url value='/js/jspdf.min.js' />"></script>
 <script src="<c:url value='/js/bluebird.min.js' />"></script>
 <script src="<c:url value='/js/html2canvas.min.js' />"></script>

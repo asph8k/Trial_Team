@@ -14,6 +14,16 @@
 		<result column="APP_NAME" property="AppName"/>
 		<result column="INS_NAME" property="appInsName"/>
 		<result column="INS_PHONE" property="appInsPhone"/>
+		<result column="JOINNAME" property="appJoinName"/>
+		<result column="JOINPW" property="appJoinPw"/>
+		<result column="JOINPHONE" property="appJoinPhone"/>
+		<result column="JOINEMAIL" property="appJoinEmail"/>
+		<result column="JOINGEN" property="appJoinGen"/>
+		<result column="JOINSOCNUM" property="appJoinSocNum"/>
+		<result column="JOINADDRBASIC" property="appJoinAddrBasic"/>
+		<result column="JOINADDRDETAIL" property="appJoinAddrDetail"/>
+		<result column="INS_ADDR" property="appInsAddr"/>
+		<result column="APP_MEMO" property="AppMemo"/>
 	</resultMap>
 	
 
@@ -64,7 +74,7 @@
 	
 	<select id="getInsappContent" resultMap="TotalApplierMap">
 		SELECT ud.joinname, ta.join_id, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
-		        ins.ins_name, ins.ins_phone, ins.ins_addr
+		        ins.ins_name, ins.ins_phone, ins.ins_addr, ta.app_memo, ta.app_num_seq
 		FROM totalapplier ta INNER JOIN Ins ins
 		ON ta.join_id = ins.joinid
 		INNER JOIN userbasic ub
@@ -74,17 +84,10 @@
 		WHERE ta.app_num_seq = #{AppNum}
 	</select>
 	
-	<update id="updateInsapp1">
-		UPDATE userdetail SET
-			JOINNAME = #{JoinName}, joinphone = #{JoinPhone},
-			joinemail = #{JoinEmail}, joinaddrbasic = #{JoinAddrBasic}, joinaddrdetail = #{JoinAddrDetail}
-		WHERE joinsocnum = #{JoinSocNum}
-	</update>
-	
-	<update id="updateInsapp2">
-		UPDATE ins SET
-			ins_name = #{InsName}, ins_phone = #{InsPhone}, ins_addr = #{InsAddr}
-		WHERE joinid = #{JoinId}
+	<update id="updateInsapp">
+		UPDATE totalapplier SET
+			APP_MEMO = #{AppMemo}
+		WHERE APP_NUM_SEQ = #{AppNum}
 	</update>
 	
 	<delete id="deleteInsapp1">

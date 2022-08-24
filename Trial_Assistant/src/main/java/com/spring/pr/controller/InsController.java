@@ -73,7 +73,7 @@ public class InsController {
 	}
 	
 	//기관 수정 요청 처리
-	@PostMapping("/insUpdate2")
+	@PostMapping("/insUpdate")
 	public String InsUpdate(InsVO vo) {
 		System.out.println("화면에서 넘어온 수정 값:" + vo);
 		System.out.println("기관 정보 수정 요청 들어옴!");

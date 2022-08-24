@@ -31,6 +31,7 @@ public class InsappMapperTest {
 		System.out.println(mapper.getInsappContent("3번째 아이디"));
 	}
 	*/
+	/*
 	@Test
 	public void updateTest1() {
 		UserDetailVO ud = new UserDetailVO();
@@ -66,5 +67,5 @@ public class InsappMapperTest {
 	@Test
 	public void deleteTest3() {
 		mapper.deleteInsapp3("7번째 아이디");
-	}
+	}*/
 }
