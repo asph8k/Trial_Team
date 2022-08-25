@@ -235,22 +235,22 @@ form{
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=${param.page}&cpp=10"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList?page=${param.page}&cpp=10"/>'">
                           	보완 요청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList?page=${param.page}&cpp=10"/>'">
                           	조력자 신청 승인자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList?page=${param.page}&cpp=10"/>'">
                           	부적격자 명단 관리
                           </a>
                       </li>
@@ -276,110 +276,113 @@ form{
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhName" value="${AppGhUpdt.ghName}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhName" value="${AppGhUpdt.ghName}" readonly>
 
                             <span class="input-group-text">아이디</span>
                             <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="JoinId" value="${AppGhUpdt.joinId}" readonly>
 
                             <span class="input-group-text ">주민등록번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhSocNum" value="${AppGhUpdt.ghSocNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhSocNum" value="${AppGhUpdt.ghSocNum}" readonly>
 
                         </div>   
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">집 전화번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhHomeNum" value="${AppGhUpdt.ghHomeNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhHomeNum" value="${AppGhUpdt.ghHomeNum}" readonly>
 
                             <span class="input-group-text">핸드폰 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhPhoneNum" value="${AppGhUpdt.ghPhoneNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhPhoneNum" value="${AppGhUpdt.ghPhoneNum}" readonly>
 
                             <span class="input-group-text">E-MAIL</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhEmail" value="${AppGhUpdt.ghEmail}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhEmail" value="${AppGhUpdt.ghEmail}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">직업</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhJob" value="${AppGhUpdt.ghJob}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhJob" value="${AppGhUpdt.ghJob}" readonly>
 
                             <span class="input-group-text">팩스 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhFax" value="${AppGhUpdt.ghFax}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhFax" value="${AppGhUpdt.ghFax}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">은행</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBank" value="${AppGhUpdt.ghBank}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBank" value="${AppGhUpdt.ghBank}" readonly>
 
                             <span class="input-group-text">예금주</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAccHol" value="${AppGhUpdt.ghAccHol}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAccHol" value="${AppGhUpdt.ghAccHol}" readonly>
 
                             <span class="input-group-text">계좌번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBankNum" value="${AppGhUpdt.ghBankNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBankNum" value="${AppGhUpdt.ghBankNum}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">조력자 구분</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhSrttn" value="${AppGhUpdt.ghSrttn}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhSrttn" value="${AppGhUpdt.ghSrttn}" readonly>
 
                             <span class="input-group-text">조력자 세부 구분</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhDtlSrttn" value="${AppGhUpdt.ghDtlSrttn}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhDtlSrttn" value="${AppGhUpdt.ghDtlSrttn}" readonly>
 
                             <span class="input-group-text">조력자 연도</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhYear" value="${AppGhUpdt.ghYear}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhYear" value="${AppGhUpdt.ghYear}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">사업자 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBsnsNum" value="${AppGhUpdt.ghBsnsNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhBsnsNum" value="${AppGhUpdt.ghBsnsNum}" readonly>
 
                             <span class="input-group-text">소속 기관 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhOfcNum" value="${AppGhUpdt.ghOfcNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhOfcNum" value="${AppGhUpdt.ghOfcNum}" readonly>
 
                             <span class="input-group-text">사무소 명</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhOfcName" value="${AppGhUpdt.ghOfcName}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhOfcName" value="${AppGhUpdt.ghOfcName}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">학력</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAcadBack" value="${AppGhUpdt.ghAcadBack}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAcadBack" value="${AppGhUpdt.ghAcadBack}" readonly>
 
                             <span class="input-group-text">학력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAcadBackFile" value="${AppGhUpdt.ghAcadBackFile}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAcadBackFile" value="${AppGhUpdt.ghAcadBackFile}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">경력</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhCarrer" value="${AppGhUpdt.ghCarrer}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhCarrer" value="${AppGhUpdt.ghCarrer}" readonly>
 
                             <span class="input-group-text">경력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhCarrerFile" value="${AppGhUpdt.ghCarrerFile}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhCarrerFile" value="${AppGhUpdt.ghCarrerFile}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기본주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAddr" value="${AppGhUpdt.ghAddr}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhAddr" value="${AppGhUpdt.ghAddr}" readonly>
 
                             <span class="input-group-text">상세주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhDtlAddr" value="${AppGhUpdt.ghDtlAddr}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhDtlAddr" value="${AppGhUpdt.ghDtlAddr}" readonly>
 
                             <span class="input-group-text">우편번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhPostNum" value="${AppGhUpdt.ghPostNum}">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="GhPostNum" value="${AppGhUpdt.ghPostNum}" readonly>
 
                         </div>
+                        <div style="width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
+							신청자 메모</div>
+						<textarea style="width: 100%; resize: none; border-radius: 5px; border: 1px solid #d6d6d6; height: 200px;" name="GhMemo">${AppGhUpdt.ghMemo}</textarea>
                         <input type="hidden" name="GhNum" value="${AppGhUpdt.ghNum}">
 					</form>
                     </div>

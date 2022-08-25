@@ -319,9 +319,8 @@ textarea{
                         <div style=" width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
                         	신청자 메모
                         </div> 
-                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:500px;" name="AppMemo">
-                        	${insappUpdt.appMemo}
-                        </textarea>
+                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:500px;" name="AppMemo">${insappUpdt.appMemo}</textarea>
+                        <input type="hidden" name="AppNum" value="${insappUpdt.appNum}">                     
 					</form>
                     </div>
                     

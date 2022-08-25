@@ -23,12 +23,6 @@ public interface IInsappMapper {
 	//기관 신청자 수정(userdetail 테이블)
 	void updateInsapp(TotalApplierVO tvo);
 	
-	//기관 신청자 삭제(userdetail 테이블)
-	void deleteInsapp1(String JoinSocNum);
-	
-	//기관 신청자 삭제(ins 테이블)
-	void deleteInsapp2(int InsNum);
-		
-	//기관 신청자 삭제(userbasic 테이블)
-	void deleteInsapp3(String JoinId);
+	//기관 신청자 삭제(totalapplier 테이블)
+	void deleteInsapp(int ANum);
 }

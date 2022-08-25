@@ -18,6 +18,12 @@
 		<result column="INSSOCNUM" property="InsSocNum"/>
 	</resultMap>
 	
+	<sql id="search">
+	   	<if test="keyword != null and keyword != ''"> 		
+	   		AND INS_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   </sql>
+	
 	<insert id="registIns">
 		INSERT INTO Ins
 		(INS_NUM, INS_NAME, INS_PHONE, INS_FAXNUM, INS_ADDR, INS_ADDR_DETAIL, JOINID)
@@ -35,6 +41,7 @@
 					INS_PHONE, 
 					INS_RGSTR 
 					FROM Ins
+					<include refid="search"/>
 					ORDER BY INS_NUM ASC
 				)tbl
 			)

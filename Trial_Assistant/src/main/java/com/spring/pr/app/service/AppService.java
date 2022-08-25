@@ -72,19 +72,4 @@ public class AppService implements IAppService {
 		mapper.deleteApp(AppNum);
 	}
 
-	@Override
-	public void deleteGhApp(int AppNum) {
-		mapper.deleteGhApp(AppNum);
-	}
-
-	@Override
-	public void deleteTsApp(int AppNum) {
-		mapper.deleteTsApp(AppNum);
-	}
-
-	@Override
-	public void deleteInsttApp(int AppNum) {
-		mapper.deleteInsttApp(AppNum);
-	}
-
 }

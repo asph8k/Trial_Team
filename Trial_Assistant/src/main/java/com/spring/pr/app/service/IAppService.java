@@ -38,14 +38,5 @@ public interface IAppService {
 	
 	//등재 신청자 삭제
 	void deleteApp(int AppNum);
-
-	//등재 신청자 삭제(일반조력자)
-	void deleteGhApp(int AppNum);
-
-	//등재 신청자 삭제(통번역인)
-	void deleteTsApp(int AppNum);
 	
-	//등재 신청자 삭제(기과추천조력자)
-	void deleteInsttApp(int AppNum);
-
 }

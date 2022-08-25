@@ -74,6 +74,7 @@ public class InsttVO {
 	private String InsttDtlAddr;
 	private int AppNum;
 	private String JoinId;
+	private String InsttMemo;
 	
 	
 }

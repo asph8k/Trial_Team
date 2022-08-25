@@ -304,13 +304,13 @@
           </div>
         </div>
 
-        <div class="announcement-search dropup">
-		<select class="dropdown" id="condition" name="condition" style="border-radius: 3px; border: 1px solid #737373; color: #737373;">
+       	<div class="division" style="display: flex; justify-content: flex-end; margin-bottom: 10px;" >
+          <select class="dropdown" id="condition" name="condition" style="border-radius: 3px; border: 1px solid #737373; color: #737373;">
+             <option value="일반조력자" ${param.condition == '일반조력자'? 'selected' : ''}>일반조력자</option>
             <option value="기관추천조력자" ${param.condition == '기관추천조력자'? 'selected' : ''}>기관추천조력자</option>
-            <option value="일반조력자" ${param.condition == '일반조력자'? 'selected' : ''}>일반조력자</option>
             <option value="통번역인" ${param.condition == '통번역인'? 'selected' : ''}>통번역인</option>
           </select>
-          <input type="text" class="announcement-search-input" placeholder="검색할 아이디 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
+          <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 아이디 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
           <button id="announcement-search-btn">검색</button>
         </div>
 
@@ -412,7 +412,7 @@
 	$('#announcement-search-btn').click(function() {
 		const keyword = $('#keywordInput').val();
 		const condition = $('#condition option:selected').val();
-		location.href="<c:url value='/app/appList?condition=" + condition + "&keyword=" + keyword +  "'/>";
+		location.href="<c:url value='/app/appList?condition=" + condition + "&keyword=" + keyword +  "&page=1&cpp=10'/>";
 	});
 	
 	//검색창에서 엔터키 입력 시 이벤트 처리
@@ -421,7 +421,7 @@
 			$('#searchBtn').click();
 		}
 	});
-
+});
 	</script>
 
 </body>

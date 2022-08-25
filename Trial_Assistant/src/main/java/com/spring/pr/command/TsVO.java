@@ -76,5 +76,6 @@ public class TsVO {
 	private String TsYear;
 	private String TsSrttn;
 	private String TsDtlSrttn;
+	private String TsMemo;
 	
 }

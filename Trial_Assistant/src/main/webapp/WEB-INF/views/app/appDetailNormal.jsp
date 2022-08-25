@@ -241,22 +241,22 @@ form{
 		                          </a>
 		                      </li>
 		                      <li class="pb-3">
-		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=${param.page}&cpp=10"/>'">
 		                          	기관 신청자 정보 조회
 		                          </a>
 		                      </li>
 		                      <li class="pb-3">
-		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList"/>'">
+		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList?page=${param.page}&cpp=10"/>'">
 		                          	보완 요청자 정보 조회
 		                          </a>
 		                      </li>
 		                      <li class="pb-3">
-		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList"/>'">
+		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList?page=${param.page}&cpp=10"/>'">
 		                          	조력자 신청 승인자 정보 조회
 		                          </a>
 		                      </li>
 		                      <li class="pb-3">
-		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList"/>'">
+		                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList?page=${param.page}&cpp=10"/>'">
 		                          	부적격자 명단 관리
 		                          </a>
 		                      </li>
@@ -393,9 +393,7 @@ form{
                         <div style=" width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
                             	신청자 메모
                         </div> 
-                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:200px;">
-
-                        </textarea>
+                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:200px;" readonly>${AppGhDet.ghMemo}</textarea>
 					</form>
                     </div>
                     

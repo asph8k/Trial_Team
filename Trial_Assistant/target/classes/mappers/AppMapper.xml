@@ -12,6 +12,7 @@
 		<result column="APP_DATE" property="AppDate"/>
 		<result column="APP_CLASSIFICATION" property="AppClassification"/>
 		<result column="APP_NAME" property="AppName"/>
+		<result column="APP_MEMO" property="AppMemo"/>
 	</resultMap>
 
 	<resultMap type="com.spring.pr.command.InsttVO" id="InsttMap">
@@ -40,6 +41,7 @@
 		<result column="INSTT_ADDR" property="InsttAddr"/>
 		<result column="INSTT_DTL_ADDR" property="InsttDtlAddr"/>
 		<result column="JOIN_ID" property="JoinId"/>
+		<result column="INSTT_MEMO" property="InsttMemo"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.pr.command.TsVO" id="TsMap">
@@ -70,6 +72,7 @@
 		<result column="TS_YEAR" property="TsYear"/>
 		<result column="TS_SRTTN" property="TsSrttn"/>
 		<result column="TS_DTL_SRTTN" property="TsDtlSrttn"/>
+		<result column="TS_MEMO" property="TsMemo"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.pr.command.GhVO" id="GhMap">
@@ -100,21 +103,14 @@
 		<result column="GH_DTL_ADDR" property="GhDtlAddr"/>
 		<result column="JOIN_ID" property="JoinId"/>
 		<result column="GH_DTL_SRTTN" property="GhDtlSrttn"/>
+		<result column="GH_MEMO" property="GhMemo"/>
 	</resultMap>
 	
 	<sql id="search">
-	   	<if test="condition == '기관조력자'">
-	   		WHERE APP_CLASSIFICATION = #{condition}
+		WHERE APP_CLASSIFICATION = #{condition}
+	   	<if test="keyword != null and keyword != ''"> 		
 	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
-	   	</if>
-	   	<if test="condition == '일반조력자'">
-	   		WHERE APP_CLASSIFICATION = #{condition}
-	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
-	   	</if>
-	   	<if test="condition == '통번역인'">
-	   		WHERE APP_CLASSIFICATION = #{condition}
-	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
-	   	</if>
+	   	</if>	   	
    </sql>
 	
 	<select id="getAppList" resultMap="TotalApplierMap">
@@ -124,6 +120,7 @@
 				(
 					SELECT APP_NUM_SEQ, JOIN_ID, APP_NAME, APP_CLASSIFICATION, APP_DATE
 					FROM TotalApplier
+					<include refid="search"/>
 					ORDER BY APP_NUM_SEQ ASC
 				)tbl
 			)
@@ -141,7 +138,7 @@
 		SELECT gh.GH_NUM_SEQ, gh.gh_name, ta.join_id, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
         		gh.gh_job, gh.gh_fax, gh.gh_bank, gh.gh_acc_hol, gh.gh_bank_num, gh.gh_srttn, gh.gh_year,
         		gh.gh_bsns_num, gh.gh_ofc_num, gh.gh_ofc_name, gh.gh_acad_back, gh.gh_acad_back_file,
-        		gh.gh_carrer, gh.gh_carrer_file, gh.gh_addr, gh.gh_dtl_addr, gh.gh_dtl_srttn, gh.APP_NUM_SEQ, gh.gh_post_num
+        		gh.gh_carrer, gh.gh_carrer_file, gh.gh_addr, gh.gh_dtl_addr, gh.gh_dtl_srttn, gh.APP_NUM_SEQ, gh.gh_post_num, gh.gh_memo
 		FROM TotalApplier ta INNER JOIN GH gh
         	ON ta.join_id = gh.join_id
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
@@ -151,7 +148,7 @@
 		SELECT ts.TS_NUM_SEQ, ts.ts_name, ta.join_id, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone_num, ts.ts_email,
 	        ts.ts_bank, ts.ts_acc_hol, ts.ts_bank_num, ts.ts_exprt, ts.ts_lngg, ts.ts_dsg_crt, ts.ts_active_area,
 	        ts.ts_acad_back, ts.ts_acad_back_file, ts.ts_carrer, ts.ts_carrer_file,
-	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num, ts.ts_srttn, ts.ts_year, ts.ts_dtl_srttn, ts.APP_NUM_SEQ
+	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num, ts.ts_srttn, ts.ts_year, ts.ts_dtl_srttn, ts.APP_NUM_SEQ, ts.ts_memo
 		FROM Totalapplier ta INNER JOIN Ts ts
 		    ON ta.JOIN_ID = ts.JOIN_ID
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
@@ -163,7 +160,7 @@
 	        it.instt_srttn, it.instt_dtl_srttn, it.instt_year,
 	        it.instt_bsns_num, it.instt_ofc_name,
 	        it.instt_acad_back, it.instt_acad_back_file, it.instt_carrer, it.instt_carrer_file,
-	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num, it.APP_NUM_SEQ
+	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num, it.APP_NUM_SEQ, it.instt_memo
 		FROM Totalapplier ta INNER JOIN Instt it 
 		    ON ta.JOIN_ID = it.JOINID
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
@@ -171,52 +168,24 @@
 	
 	<update id="updateGhApp">
 		UPDATE Gh SET
-		    gh_name = #{GhName}, gh_soc_num = #{GhSocNum}, gh_home_num = #{GhHomeNum}, gh_phone_num = #{GhPhoneNum}, gh_email = #{GhEmail},
-		    gh_job = #{GhJob}, gh_fax = #{GhFax}, gh_bank = #{GhBank}, gh_srttn = #{GhSrttn}, gh_year = #{GhYear}, gh_bsns_num = #{GhBsnsNum}, gh_ofc_num = #{GhOfcNum}, gh_ofc_name = #{GhOfcName},
-		    gh_acad_back = #{GhAcadBack}, gh_acad_back_file = #{GhAcadBackFile}, gh_carrer = #{GhCarrer}, gh_carrer_file = #{GhCarrerFile},
-		    gh_addr = #{GhAddr}, gh_dtl_addr = #{GhDtlAddr}
+		    gh_memo = #{GhMemo}
 		WHERE GH_NUM_SEQ = #{GhNum}
 	</update>
 	
 	<update id="updateTsApp">
-		UPDATE Ts SET 
-		    ts_name = #{TsName}, ts_soc_num = #{TsSocNum}, ts_home_num = #{TsHomeNum},
-		    ts_phone_num = #{TsPhoneNum}, ts_email = #{TsEmail}, ts_bank = #{TsBank}, ts_acc_hol = #{TsAccHol}, ts_bank_num = #{TsBankNum}, ts_exprt = #{TsExprt}, ts_lngg = #{TsLngg},
-		    ts_dsg_crt = #{TsDsgCrt}, ts_active_area = #{TsActiveArea}, ts_acad_back = #{TsAcadBack}, ts_acad_back_file = #{TsAcadBackFile},
-		    ts_carrer = #{TsCarrer}, ts_carrer_file = #{TsCarrerFile},
-		    ts_addr = #{TsAddr}, ts_dtl_addr = #{TsDtlAddr}, ts_post_num = #{TsPostNum}
+		UPDATE TS SET
+			TS_MEMO = #{TsMemo}
 		WHERE TS_NUM_SEQ = #{TsNum}
 	</update>
 	
 	<update id="updateInsttApp">
 		UPDATE Instt SET
-		    instt_name = #{InsttName}, instt_soc_num = #{InsttSocNum}, instt_home_num = #{InsttHomeNum},
-		    instt_phone_num = #{InsttPhoneNum}, instt_email = #{InsttEmail}, instt_job = #{InsttJob}, 
-		    instt_fax = #{InsttFax}, instt_bank = #{InsttBank}, instt_srttn = #{InsttSrttn}, 
-		    instt_dtl_srttn = #{InsttDtlSrttn}, instt_year = #{InsttYear}, instt_bsns_num = #{InsttBsnsNum}, 
-		    instt_ofc_name = #{InsttOfcName}, instt_acad_back = #{InsttAcadBack}, instt_acad_back_file = #{InsttAcadBakFile}, 
-		    instt_carrer = #{InsttCarrer}, instt_carrer_file = #{InsttCarrerBack}, 
-		    instt_addr = #{InsttAddr}, instt_dtl_addr = #{InsttDtlAddr}
+		    instt_memo = #{InsttMemo}
 		WHERE INSTT_NUM_SEQ = #{InsttNum}
 	</update>
 	
 	<delete id="deleteApp">
 		DELETE FROM TotalApplier
-		WHERE APP_NUM_SEQ = #{AppNum}
-	</delete>
-	
-	<delete id="deleteGhApp">
-		DELETE FROM gh
-		WHERE APP_NUM_SEQ = #{AppNum}
-	</delete>
-	
-	<delete id="deleteTsApp">
-		DELETE FROM ts
-		WHERE APP_NUM_SEQ = #{AppNum}
-	</delete>
-	
-	<delete id="deleteInsttApp">
-		DELETE FROM instt
 		WHERE APP_NUM_SEQ = #{AppNum}
 	</delete>
 

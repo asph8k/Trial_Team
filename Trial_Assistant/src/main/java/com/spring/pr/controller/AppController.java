@@ -31,6 +31,7 @@ public class AppController {
 	public String AppList(Model model, SearchVO search, @RequestParam("page") int page) {
 		System.out.println("등재 신청자 목록 페이지 요청 들어옴!");
 		//model.addAttribute("AppList", service.getAppList());
+		System.out.println("뷰에서 넘어온 검색 입력 값:" + search);
 		
 		search.setPageNum(page);
 		List<TotalApplierVO> list = service.getAppList(search);
@@ -126,9 +127,6 @@ public class AppController {
 	public String AppDelete(@PathVariable int AppNum) {
 		System.out.println("등재 신청자 삭제 요청 들어옴!");
 		service.deleteApp(AppNum);
-		service.deleteTsApp(AppNum);
-		service.deleteGhApp(AppNum);
-		service.deleteInsttApp(AppNum);
 		return "redirect:/app/appList?page=1&cpp=10";
 	}
 	

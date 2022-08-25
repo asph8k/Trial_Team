@@ -39,7 +39,7 @@ public class InsappService implements IInsappService {
 
 	@Override
 	public void deleteInsapp(int AppNum) {
-		
+		mapper.deleteInsapp(AppNum);
 	}
 
 }

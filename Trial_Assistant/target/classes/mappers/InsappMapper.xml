@@ -90,19 +90,9 @@
 		WHERE APP_NUM_SEQ = #{AppNum}
 	</update>
 	
-	<delete id="deleteInsapp1">
-		DELETE FROM userdetail
-		WHERE JOINSOCNUM = #{JoinSocNum}
-	</delete>
-	
-	<delete id="deleteInsapp2">
-		DELETE FROM ins
-		WHERE INS_NUM = #{InsNum}
-	</delete>
-	
-	<delete id="deleteInsapp3">
-		DELETE FROM userbasic
-		WHERE JOINID = #{JoinId}
+	<delete id="deleteInsapp">
+		DELETE FROM totalapplier
+		WHERE app_num_seq = #{AppNum}
 	</delete>
 	
 </mapper>

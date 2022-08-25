@@ -77,5 +77,6 @@ public class GhVO {
 	private int AppNum;
 	private String JoinId;
 	private String GhDtlSrttn;
+	private String GhMemo;
 	
 }
