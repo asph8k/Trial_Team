@@ -75,6 +75,6 @@ public class InsttVO {
 	private int AppNum;
 	private String JoinId;
 	private String InsttMemo;
-	
+	private String InsttSupAppMemo;
 	
 }

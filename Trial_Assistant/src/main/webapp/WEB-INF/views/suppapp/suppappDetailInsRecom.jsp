@@ -217,10 +217,14 @@ textarea{
 
 </style>
 
+<script src="<c:url value='/js/jspdf.min.js' />"></script>
+<script src="<c:url value='/js/bluebird.min.js' />"></script>
+<script src="<c:url value='/js/html2canvas.min.js' />"></script>
+
 </head>
 <body>
 
-	<jsp:include page="../include/header2.jsp" />
+	<%@ include file="../include/header2.jsp"%>
 	
 	            <!-- side바 추가 -->
             <div class="total clearfix">
@@ -233,27 +237,27 @@ textarea{
                   
                   <ul class="list-unstyled templatemo-accordion">
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList?page=${param.page}&cpp=10"/>'">
                           	등재 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=${param.page}&cpp=10"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList?page=${param.page}&cpp=10"/>'">
                           	보완 요청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList?page=${param.page}&cpp=10"/>'">
                           	조력자 신청 승인자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList?page=${param.page}&cpp=10"/>'">
                           	부적격자 명단 관리
                           </a>
                       </li>
@@ -263,7 +267,6 @@ textarea{
             </div>
 
     <!-- Start Categories of The Month -->
-    <form class="form-total">
         <section class = "py-3 total-sec">
 
         <div class="table-box col-lg second-section" >
@@ -275,133 +278,167 @@ textarea{
             <div>
                 <div>
                     <div>
+                    <form name="delSuppappReForm" method="post">
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">이름</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttName}" readonly>
 
                             <span class="input-group-text">아이디</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.joinId}" readonly>
 
                             <span class="input-group-text ">주민등록번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttSocNum}" readonly>
 
                         </div>   
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">집 전화번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttHomeNum}" readonly>
 
                             <span class="input-group-text">핸드폰 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttPhoneNum}" readonly>
 
                             <span class="input-group-text">E-MAIL</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttEmail}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">직업</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttJob}" readonly>
 
                             <span class="input-group-text">팩스 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttFax}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">은행</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttBank}" readonly>
 
                             <span class="input-group-text">예금주</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttAccHol}" readonly>
 
                             <span class="input-group-text">계좌번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttBankNum}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">조력자 구분</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttSrttn}" readonly>
 
                             <span class="input-group-text">조력자 세부 구분</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttDtlSrttn}" readonly>
 
                             <span class="input-group-text">조력자 연도</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttYear}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">사업자 번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttBsnsNum}" readonly>
 
                             <span class="input-group-text">사무소 명</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttOfcName}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">학력</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttAcadBack}" readonly>
 
                             <span class="input-group-text">학력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttAcadBakFile}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">경력</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttCarrer}" readonly>
 
                             <span class="input-group-text">경력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttCarrerBack}" readonly>
 
                         </div> 
 
                         <div class="input-group mb-3">
 
                             <span class="input-group-text">기본주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" >
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttAddr}" readonly>
 
                             <span class="input-group-text">상세주소</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttDtlAddr}" readonly>
 
                             <span class="input-group-text">우편번호</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${SuppappRecomDet.insttPostNum}" readonly>
 
                         </div> 
-
+                        <div style=" width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
+							보완 요청사항
+                        </div> 
+                        <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:200px;" readonly>${SuppappRecomDet.insttSupAppMemo}</textarea>
+					</form>
                     </div>
                     
                 </div>
 
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
-                    <input type="file" class = "file-btn"aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="button" id="savePdf">파일 출력</button>
 
-                    <button class="btn btn-outline-secondary" type="file" id="inputGroupFileAddon04">파일 출력</button>
-
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">삭제</button>
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/suppapp/suppappUpdateInsRecom"/>'">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="delSuppappRcBtn">삭제</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/suppapp/suppappUpdateInsRecom/${SuppappRecomDet.appNum}?page=${param.page}&cpp=10"/>'">수정</button>
                 </div>
 
             </div>
 
         </div>      
     </section>
-</form>
 </div>
 	
 	<%@ include file="../include/footer1.jsp"%>
+	
+		<script>
+		$('#delSuppappRcBtn').click(function() {
+			$('form[name=delSuppappReForm]').attr('action', '<c:url value="/suppapp/suppappDelete/${SuppappRecomDet.appNum}"/>');
+			$('form[name=delSuppappReForm]').submit();
+		});
+		
+		var doc = new jsPDF();
+		//var specialElementHandlers = {
+		//    '#editor': function(element, renderer) {
+		//        return true;
+		//    }
+		//}
+		
+		$('#savePdf').click(function() {
+			console.log('pdf button click event!');
+		    html2canvas($(".py-3"), {
+		        onrendered : function(canvas) {
+		            // 한글깨짐현상때문에 jpeg->jspdf 전환
+		            var imgData = canvas.toDataURL('image/jpeg');
+		            var pageWidth = 210;
+		            var pageHeight = pageWidth * 1.414;
+		            var imgWidth = pageWidth - 20;
+		            var imgHeight = $('.py-3').height() * imgWidth / $('.py-3').width();
+		            var doc = new jsPDF('p','mm',[pageHeight, pageWidth]);
+		            doc.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+		            doc.save('보완요청자(기관추천조력자).pdf');
+		        }
+			}
+		 )
+		});
+	</script>
 
 </body>
 </html>

@@ -16,7 +16,7 @@ import com.spring.pr.suppapp.mapper.ISuppappMapper;
 public class SuppappMapperTest {
 	
 	@Autowired ISuppappMapper mapper;
-
+/*
 	@Test
 	public void getListTest() {
 		System.out.println(mapper.getSuppappList());
@@ -133,5 +133,5 @@ public class SuppappMapperTest {
 	@Test
 	public void deleteGhTest() {
 		mapper.deleteGhSuppapp(5);
-	}
+	}*/
 }

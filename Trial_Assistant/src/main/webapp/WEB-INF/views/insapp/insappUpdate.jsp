@@ -214,7 +214,7 @@ textarea{
 </head>
 <body>
 
-	<jsp:include page="../include/header2.jsp" />
+	<%@ include file="../include/header2.jsp"%>
 	
 	<!-- side바 추가 -->
             <div class="total clearfix">

@@ -10,6 +10,8 @@ import com.spring.pr.command.InsttVO;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.command.TsVO;
 import com.spring.pr.suppapp.mapper.ISuppappMapper;
+import com.spring.pr.util.PageVO;
+import com.spring.pr.util.SearchVO;
 
 @Service
 public class SuppappService implements ISuppappService {
@@ -18,69 +20,49 @@ public class SuppappService implements ISuppappService {
 	private ISuppappMapper mapper;
 	
 	@Override
-	public List<TotalApplierVO> getAppList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TotalApplierVO> getSupappList(SearchVO search) {
+		List<TotalApplierVO> list = mapper.getSuppappList(search);
+		return list;
+	}
+	
+	@Override
+	public int getSupappTotal(PageVO paging) {
+		return mapper.getSuppappTotal(paging);
 	}
 
 	@Override
-	public GhVO getGhAppContent(int AppNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public GhVO getGhSupappContent(int AppNum) {
+		return mapper.getGhSuppappContent(AppNum);
 	}
 
 	@Override
-	public TsVO getTsAppContent(int AppNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public TsVO getTsSupappContent(int AppNum) {
+		return mapper.getTsSuppappContent(AppNum);
 	}
 
 	@Override
-	public InsttVO getInsttAppContent(int AppNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public InsttVO getInsttSupappContent(int AppNum) {
+		return mapper.getInsttSuppappContent(AppNum);
 	}
 
 	@Override
-	public void updateGhApp(GhVO gvo) {
-		// TODO Auto-generated method stub
-
+	public void updateGhSupapp(GhVO gvo) {
+		mapper.updateGhSuppapp(gvo);
 	}
 
 	@Override
-	public void updateTsApp(TsVO tvo) {
-		// TODO Auto-generated method stub
-
+	public void updateTsSupapp(TsVO tvo) {
+		mapper.updateTsSuppapp(tvo);
 	}
 
 	@Override
-	public void updateInsttApp(InsttVO ivo) {
-		// TODO Auto-generated method stub
-
+	public void updateInsttSupapp(InsttVO ivo) {
+		mapper.updateInsttSuppapp(ivo);
 	}
 
 	@Override
-	public void deleteApp(int AppNum) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteGhApp(int GhNum) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteTsApp(int TsNum) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteInsttApp(int InsttNum) {
-		// TODO Auto-generated method stub
-
+	public void deleteSupapp(int AppNum) {
+		mapper.deleteSuppapp(AppNum);
 	}
 
 }

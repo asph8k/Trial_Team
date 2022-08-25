@@ -268,7 +268,7 @@
 </head>
 <body>
 
-	<jsp:include page="../include/header2.jsp" />
+	<%@ include file="../include/header2.jsp"%>
 	
 	            <!-- side바 추가 -->
             <div class="total clearfix">
@@ -281,27 +281,27 @@
                   
                   <ul class="list-unstyled templatemo-accordion">
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList?page=1&cpp=10"/>'">
                           	등재 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=1&cpp=10"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList?page=1&cpp=10"/>'">
                           	보완 요청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList?page=1&cpp=10"/>'">
                           	조력자 신청 승인자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList?page=1&cpp=10"/>'">
                           	부적격자 명단 관리
                           </a>
                       </li>
@@ -311,7 +311,6 @@
           </div>
 
     <!-- Start Categories of The Month -->
-    <form class="form-total">
       <section class = "py-3 total-sec ">
       <div class="table-box col-lg second-section">
         <div class="more-view title-box" id="notice_title">
@@ -319,28 +318,17 @@
             <h3>보완 요청자 목록</h3>
           </div>
 
-
-
-          <div class="announcement-search dropdown">
-            <button
-              type="button"
-              id="title-btn"
-              class="btn btn-secondary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false">
-              	일반조력자
-            </button>
-            
-            <ul class="dropdown-menu">
-              <li>기관추천조력자</li>
-              <li>통번역인</li>
-              <li>일반조력자</li>
-            </ul>
-            <input type="text" placeholder="검색할 아이디 입력하세요." />
-            <button id="announcement-search-btn">검색</button>
-          </div>
+       	<div class="division" style="display: flex; justify-content: flex-end; margin-bottom: 10px;" >
+          <select class="dropdown" id="condition" name="condition" style="border-radius: 3px; border: 1px solid #737373; color: #737373;">
+             <option value="일반조력자" ${param.condition == '일반조력자'? 'selected' : ''}>일반조력자</option>
+            <option value="기관추천조력자" ${param.condition == '기관추천조력자'? 'selected' : ''}>기관추천조력자</option>
+            <option value="통번역인" ${param.condition == '통번역인'? 'selected' : ''}>통번역인</option>
+          </select>
+          <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 이름을 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
+          <button id="announcement-search-btn">검색</button>
         </div>
-        </div>
+      </div>
+    </div>
 
         <table class="announcement-table table table-hover">
           <thead style="background-color: #e9ecef; border-top:3px solid">
@@ -353,57 +341,101 @@
           </thead>
 
           <tbody>
-            <tr style="border-top : 3px solid #e9ecef">
-              <td>1</td>
-              <td>abcd</td>
-              <td>
-              	<a href="<c:url value='/suppapp/suppappDetailTotalTras'/>">김호동</a>
-              </td>
-              <td>통번역인</td>
-              <!-- Javascript를 사용해서 날짜 입력받거나  -->
-              <td>2022/07/29</td>
-              <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>abcd</td>
-              <td>
-              	<a href="<c:url value='/suppapp/suppappDetailNormal'/>">박호동</a>
-              </td>
-              <td>일반조력자</td>
-              <!-- Javascript를 사용해서 날짜 입력받거나  -->
-              <td>2022/07/29</td>
-              <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>abcd</td>
-              <td>
-              	<a href="<c:url value='/suppapp/suppappDetailInsRecom'/>">이호동</a>
-              </td>
-              <td>기관추천조력자</td>
-              <!-- Javascript를 사용해서 날짜 입력받거나  -->
-              <td>2022/07/29</td>
-              <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
-            </tr>
+          	<c:forEach items="${SupappList}" var="suppapp">
+	          <tr style="border-top : 3px solid #e9ecef">
+	            <td>${suppapp.appNum}</td>
+	            <td>${suppapp.joinId}</td>
+	              <c:choose>
+	              	<c:when test="${suppapp.appClassification eq '통번역인'}">
+			              <td>
+			              	<a href="<c:url value='/suppapp/suppappDetailTotalTras/${suppapp.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${suppapp.appName}</a>
+			              </td>
+	                </c:when>
+	                <c:when test="${suppapp.appClassification eq '일반조력자'}">
+			              <td>
+			              	<a href="<c:url value='/suppapp/suppappDetailNormal/${suppapp.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${suppapp.appName}</a>
+			              </td>
+	                </c:when>
+	                <c:when test="${suppapp.appClassification eq '기관추천조력자'}">
+			              <td>
+			              	<a href="<c:url value='/suppapp/suppappDetailInsRecom/${suppapp.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${suppapp.appName}</a>
+			              </td>
+	                </c:when>
+	              </c:choose>
+	            <td>${suppapp.appClassification}</td>
+	            <!-- Javascript를 사용해서 날짜 입력받거나  -->
+              	<td><fmt:formatDate value="${suppapp.appDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
+	            <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
+	          </tr>
+          	</c:forEach>
           </tbody>
         </table>
 
+   		<form action="<c:url value='/suppapp/suppappList'/>" name="pageForm">
         <div class="andBtns">
           <div class="paging-btns">
-            <button type="button" class="btn btn-outline-secondary">◀</button>
-            <button type="button" class="btn btn-outline-secondary">1</button>
-            <button type="button" class="btn btn-outline-secondary">2</button>
-            <button type="button" class="btn btn-outline-secondary">3</button>
-            <button type="button" class="btn btn-outline-secondary">4</button>
-            <button type="button" class="btn btn-outline-secondary">▶</button>
+          <ul id="pagination" class="pagination pagination-sm">
+	          <c:if test="${pc.prev}">
+	            <li><a href="#" data-pagenum="${pc.beginPage - 1}" style="text-decoration: none;">◀</a></li>
+			  </c:if>
+			  
+			  <c:forEach var="num" begin="${pc.beginPage}" end="${pc.endPage}">
+			  	<li><a href="#" data-pagenum="${num}" class="numBtn ${pc.paging.pageNum == num ? 'page-active' : ''}" style="text-decoration: none;">${num}</a></li>
+			  	<input type="hidden" name="pageNum" value="${num}">
+			  </c:forEach>
+			  
+			  <c:if test="${pc.next}">
+	            <li><a href="#" data-pagenum="${pc.endPage+1}" style="text-decoration: none;">▶</a></li>
+	          </c:if>
+          </ul>
           </div>
+		
       </div>
+      
+      	 <input type="hidden" name="page" value="${pc.paging.pageNum}">
+         <input type="hidden" name="cpp" value="${pc.paging.cpp}">        
+         <input type="hidden" name="condition" value="${pc.paging.condition}">
+         <input type="hidden" name="keyword" value="${pc.paging.keyword}"> 
+         </form> 
       </div>
     </section>
-  </form>
 	
 	<%@ include file="../include/footer1.jsp"%>
+	
+		<script>
+	
+	$(function() {
+
+		 const msg = '${msg}';
+		  if(msg !== '') {
+			  alert(msg);
+		  }
+		 
+	     $('#pagination').on('click', 'a', function(e) {
+	        e.preventDefault(); //a태그의 고유기능 중지.
+
+	        const value = $(this).data('pagenum'); // -> jQuery
+
+	        document.pageForm.page.value = value;
+	        document.pageForm.submit();
+	     });
+	     
+	//검색 버튼 이벤트 처리	
+	
+	$('#announcement-search-btn').click(function() {
+		const keyword = $('#keywordInput').val();
+		const condition = $('#condition option:selected').val();
+		location.href="<c:url value='/suppapp/suppappList?condition=" + condition + "&keyword=" + keyword +  "&page=1&cpp=10'/>";
+	});
+	
+	//검색창에서 엔터키 입력 시 이벤트 처리
+	$('#keywordInput').keydown(function(e) {
+		if(e.keyCode === 13) { //키가 13번이면 실행 (13 -> 엔터)
+			$('#searchBtn').click();
+		}
+	});
+});
+	</script>
 
 </body>
 </html>

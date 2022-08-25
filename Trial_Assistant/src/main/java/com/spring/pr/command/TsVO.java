@@ -77,5 +77,6 @@ public class TsVO {
 	private String TsSrttn;
 	private String TsDtlSrttn;
 	private String TsMemo;
+	private String TsSupAppMemo;
 	
 }

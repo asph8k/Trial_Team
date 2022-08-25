@@ -221,7 +221,7 @@ form {
 </head>
 <body>
 
-	<jsp:include page="../include/header2.jsp" />
+	<%@ include file="../include/header2.jsp"%>
 
 	<div class="total clearfix">
 		<!-- form을 감싸고 있음-->

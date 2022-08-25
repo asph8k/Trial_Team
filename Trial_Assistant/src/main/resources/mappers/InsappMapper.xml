@@ -7,7 +7,7 @@
 
 	<resultMap type="com.spring.pr.command.TotalApplierVO" id="TotalApplierMap">
 		<id column="APP_NUM_SEQ" property="AppNum"/>
-		<result column="JOIN_ID" property="JoinId"/>
+		<result column="JOINID" property="JoinId"/>
 		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>
 		<result column="APP_DATE" property="AppDate"/>
 		<result column="APP_CLASSIFICATION" property="AppClassification"/>
@@ -58,7 +58,7 @@
 				(
 					SELECT ta.app_num_seq, ins.ins_name, ins.ins_phone, ta.app_date
 					FROM Totalapplier ta INNER JOIN Ins ins
-					ON ta.join_id = ins.joinid
+					ON ta.joinid = ins.joinid
 					ORDER BY INS_NUM ASC
 				)tbl
 			)
@@ -73,10 +73,10 @@
 	</select>
 	
 	<select id="getInsappContent" resultMap="TotalApplierMap">
-		SELECT ud.joinname, ta.join_id, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
+		SELECT ud.joinname, ta.joinid, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
 		        ins.ins_name, ins.ins_phone, ins.ins_addr, ta.app_memo, ta.app_num_seq
 		FROM totalapplier ta INNER JOIN Ins ins
-		ON ta.join_id = ins.joinid
+		ON ta.joinid = ins.joinid
 		INNER JOIN userbasic ub
 		ON ins.joinid = ub.joinid
 		INNER JOIN userdetail ud

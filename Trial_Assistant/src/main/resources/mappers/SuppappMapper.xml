@@ -6,13 +6,17 @@
 <mapper namespace="com.spring.pr.suppapp.mapper.ISuppappMapper">
 	<resultMap type="com.spring.pr.command.TotalApplierVO" id="TotalApplierMap">
 		<id column="APP_NUM_SEQ" property="AppNum"/>
-		<result column="JOIN_ID" property="JoinId"/>
+		<result column="JOINID" property="JoinId"/>
 		<result column="APP_NAME" property="AppName"/>
 		<result column="APP_CLASSIFICATION" property="AppClassification"/>
-		<result column="APP_DATE" property="AppDate"/>		
+		<result column="APP_DATE" property="AppDate"/>
+		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>	
+		<result column="APP_MEMO" property="AppMemo"/>	
 	</resultMap>
 	
 	<resultMap type="com.spring.pr.command.InsttVO" id="InsttMap">
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<id column="INSTT_NUM_SEQ" property="InsttNum"/>
 		<result column="INSTT_NAME" property="InsttName"/>
 		<result column="INSTT_OFC_NAME" property="InsttOfcName"/>
 		<result column="INSTT_YEAR" property="InsttYear"/>
@@ -35,7 +39,8 @@
 		<result column="INSTT_POST_NUM" property="InsttPostNum"/>
 		<result column="INSTT_ADDR" property="InsttAddr"/>
 		<result column="INSTT_DTL_ADDR" property="InsttDtlAddr"/>
-		<result column="JOIN_ID" property="JoinId"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="InsttSupappMemo" property="InsttSupAppMemo"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.pr.command.TsVO" id="TsMap">
@@ -62,7 +67,11 @@
 		<result column="TS_ACTIVE_AREA" property="TsActiveArea"/>
 		<result column="TS_DSGNT_COURT" property="TsDsgntCourt"/>
 		<result column="TS_ACTVT_AREA" property="TsActvtArea"/>
-		<result column="JOIN_ID" property="JoinId"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="TsSupappMemo" property="TsSupAppMemo"/>
+		<result column="TS_YEAR" property="TsYear"/>
+		<result column="TS_SRTTN" property="TsSrttn"/>
+		<result column="TS_DTL_SRTTN" property="TsDtlSrttn"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.pr.command.GhVO" id="GhMap">
@@ -91,16 +100,33 @@
 		<result column="GH_PSTL_CODE" property="GhPstlCode"/>
 		<result column="GH_ADDR" property="GhAddr"/>
 		<result column="GH_DTL_ADDR" property="GhDtlAddr"/>
-		<result column="JOIN_ID" property="JoinId"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="GH_DTL_SRTTN" property="GhDtlSrttn"/>
+		<result column="GhSupappMemo" property="GhSupAppMemo"/>
 	</resultMap>
 	
-	<resultMap type="com.spring.pr.command.SuppappVO" id="SuppappMapp">
-		<collection property="insttVO" resultMap="InsttMap" />
-		<collection property="taVO" resultMap="TotalApplierMap" />
-	</resultMap>
+	<sql id="search">
+		WHERE APP_CLASSIFICATION = #{condition}
+	   	<if test="keyword != null and keyword != ''"> 		
+	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   	</sql>
 	
 	<select id="getSuppappList" resultMap="TotalApplierMap">
-		SELECT * FROM Totalapplier
+		SELECT * FROM
+				(
+				SELECT ROWNUM AS rn, tbl.*FROM
+					(
+						SELECT APP_NUM_SEQ, APP_NAME, JOINID, APP_CLASSIFICATION, APP_DATE
+						FROM totalapplier
+						<include refid="search"/>
+						ORDER BY APP_NUM_SEQ ASC
+					)tbl
+				)
+			<![CDATA[
+		      WHERE rn > (#{pageNum}-1) * #{cpp}
+		      AND rn <= #{pageNum} * #{cpp}
+		    	]]>
 	</select>
 	
 	<select id="getSuppappTotal" resultType="int">
@@ -108,87 +134,59 @@
 	</select>
 	
 	<select id="getInsttSuppappContent" resultMap="InsttMap">
-		SELECT it.instt_name, ta.join_id, it.instt_soc_num, it.instt_home_num, it.instt_phone_num, it.instt_email,
+		SELECT it.instt_name, ta.joinid, it.instt_soc_num, it.instt_home_num, it.instt_phone_num, it.instt_email,
 	        it.instt_job, it.instt_fax, it.instt_bank, it.instt_acc_hol, it.instt_bank_num,
 	        it.instt_srttn, it.instt_dtl_srttn, it.instt_year,
-	        it.instt_bsns_num, it.instt_ofc_name,
+	        it.instt_bsns_num, it.instt_ofc_name, it.instt_num_seq,
 	        it.instt_acad_back, it.instt_acad_back_file, it.instt_carrer, it.instt_carrer_file,
-	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num
+	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num, it.InsttSupappMemo, it.APP_NUM_SEQ
 		FROM Totalapplier ta INNER JOIN Instt it 
-		    ON ta.JOIN_ID = it.JOIN_ID
+		    ON ta.JOINID = it.JOINID
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
 	</select>
 	
 	<select id="getTsSuppappContent" resultMap="TsMap">
-		SELECT ts.ts_name, ta.join_id, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone_num, ts.ts_email,
+		SELECT ts.ts_name, ta.joinid, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone_num, ts.ts_email,
 	        ts.ts_bank, ts.ts_acc_hol, ts.ts_bank_num, ts.ts_exprt, ts.ts_lngg, ts.ts_dsg_crt, ts.ts_active_area,
-	        ts.ts_acad_back, ts.ts_acad_back_file, ts.ts_carrer, ts.ts_carrer_file,
-	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num
+	        ts.ts_acad_back, ts.ts_acad_back_file, ts.ts_carrer, ts.ts_carrer_file, 
+	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num, ts.TsSupappMemo, ts.APP_NUM_SEQ, ts.ts_srttn, ts.ts_year, ts.ts_dtl_srttn
 		FROM Totalapplier ta INNER JOIN Ts ts
-		    ON ta.JOIN_ID = ts.JOIN_ID
+		    ON ta.JOINID = ts.JOINID
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
 	</select>
 	
 	<select id="getGhSuppappContent" resultMap="GhMap">
-		SELECT gh.gh_name, ta.join_id, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
+		SELECT gh.gh_name, ta.joinid, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
 	        gh.gh_job, gh.gh_fax, gh.gh_bank, gh.gh_acc_hol, gh.gh_bank_num,
 	        gh.gh_srttn, gh.gh_year, gh.gh_bsns_num, gh.gh_ofc_num, gh.gh_ofc_name,
 	        gh.gh_acad_back, gh.gh_acad_back_file, gh.gh_carrer, gh.gh_carrer_file,
-	        gh.gh_addr, gh.gh_dtl_addr, gh.gh_post_num
+	        gh.gh_addr, gh.gh_dtl_addr, gh.gh_post_num, gh.GhSupappMemo, gh.APP_NUM_SEQ, gh.gh_dtl_srttn, gh.gh_num_seq
 		FROM Totalapplier ta INNER JOIN Gh gh
-		    ON ta.JOIN_ID = gh.JOIN_ID
+		    ON ta.JOINID = gh.JOINID
 		WHERE ta.APP_NUM_SEQ = #{AppNum}
 	</select>
 	
 	<update id="updateInsttSuppapp">
 		UPDATE Instt SET
-		    instt_name = #{InsttName}, instt_home_num = #{InsttHomeNum},
-		    instt_phone_num = #{InsttPhoneNum}, instt_email = #{InsttEmail}, instt_job = #{InsttJob}, 
-		    instt_fax = #{InsttFax}, instt_bank = #{InsttBank}, instt_srttn = #{InsttSrttn}, 
-		    instt_dtl_srttn = #{InsttDtlSrttn}, instt_year = #{InsttYear}, instt_bsns_num = #{InsttBsnsNum}, 
-		    instt_ofc_name = #{InsttOfcName}, instt_acad_back = #{InsttAcadBack}, instt_acad_back_file = #{InsttAcadBakFile}, 
-		    instt_carrer = #{InsttCarrer}, instt_carrer_file = #{InsttCarrerBack}, 
-		    instt_addr = #{InsttAddr}, instt_dtl_addr = #{InsttDtlAddr}
+			InsttSupappMemo = #{InsttSupAppMemo}
 		WHERE INSTT_NUM_SEQ = #{InsttNum}
 	</update>
 	
 	<update id="updateTsSuppapp">
 		UPDATE Ts SET 
-		    ts_name = #{TsName}, ts_home_num = #{TsHomeNum},
-		    ts_phone_num = #{TsPhoneNum}, ts_email = #{TsEmail}, ts_bank = #{TsBank}, ts_exprt = #{TsExprt}, ts_lngg = #{TsLngg},
-		    ts_dsg_crt = #{TsDsgCrt}, ts_active_area = #{TsActiveArea}, ts_acad_back = #{TsAcadBack}, ts_acad_back_file = #{TsAcadBackFile},
-		    ts_carrer = #{TsCarrer}, ts_carrer_file = #{TsCarrerFile},
-		    ts_addr = #{TsAddr}, ts_dtl_addr = #{TsDtlAddr}
+			TsSupappMemo = #{TsSupAppMemo}
 		WHERE TS_NUM_SEQ = #{TsNum}
 	</update>
 	
 	<update id="updateGhSuppapp">
 		UPDATE Gh SET
-		    gh_name = #{GhName}, gh_home_num = #{GhHomeNum}, gh_phone_num = #{GhPhoneNum}, gh_email = #{GhEmail},
-		    gh_job = #{GhJob}, gh_fax = #{GhFax}, gh_bank = #{GhBank}, gh_srttn = #{GhSrttn}, gh_year = #{GhYear}, gh_bsns_num = #{GhBsnsNum}, gh_ofc_num = #{GhOfcNum}, gh_ofc_name = #{GhOfcName},
-		    gh_acad_back = #{GhAcadBack}, gh_acad_back_file = #{GhAcadBackFile}, gh_carrer = #{GhCarrer}, gh_carrer_file = #{GhCarrerFile},
-		    gh_addr = #{GhAddr}, gh_dtl_addr = #{GhDtlAddr}
+			GhSupappMemo = #{GhSupAppMemo}
 		WHERE GH_NUM_SEQ = #{GhNum}
 	</update>
 	
 	<delete id="deleteSuppapp">
 		DELETE FROM totalapplier
 		WHERE app_num_seq = #{AppNum}
-	</delete>
-	
-	<delete id="deleteInsttSuppapp">
-		DELETE FROM instt
-		WHERE instt_num_seq = #{InsttNum}
-	</delete>
-	
-	<delete id="deleteTsSuppapp">
-		DELETE FROM ts
-		WHERE ts_num_seq = #{TsNum}
-	</delete>
-	
-	<delete id="deleteGhSuppapp">
-		DELETE FROM gh
-		WHERE gh_num_seq = #{GhNum}
 	</delete>
 	
 </mapper>
