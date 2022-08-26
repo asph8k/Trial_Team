@@ -46,87 +46,84 @@ public class AppController {
 	}
 
 	//등재 신청자 통번역인 상세보기 요청 처리
-	@GetMapping("/appDetailTotalTras/{AppNum}")
-	public String AppDetailTotalTras(@PathVariable int AppNum,  Model model) {
-		System.out.println(service.getTsAppContent(AppNum) + "서비스에서 넘어온 값");
+	@GetMapping("/appDetailTotalTras/{AppNumSeq}")
+	public String AppDetailTotalTras(@PathVariable int AppNumSeq,  Model model) {
+		System.out.println(service.getTsAppContent(AppNumSeq) + "서비스에서 넘어온 값");
 		System.out.println("등재 신청자 통번역인 상세보기 요청 들어옴!");
-		model.addAttribute("AppTotalTrasDet", service.getTsAppContent(AppNum));
+		model.addAttribute("AppTotalTrasDet", service.getTsAppContent(AppNumSeq));
 		return "/app/appDetailTotalTras";
 	}
 	
 	//등재 신청자 일반조력자 상세보기 요청 처리
-	@GetMapping("/appDetailNormal/{AppNum}")
-	public String AppDetailNormal(@PathVariable int AppNum, Model model) {
-		System.out.println(service.getGhAppContent(AppNum) + "서비스에서 넘어온 값");
+	@GetMapping("/appDetailNormal/{AppNumSeq}")
+	public String AppDetailNormal(@PathVariable int AppNumSeq, Model model) {
+		System.out.println(service.getGhAppContent(AppNumSeq) + "서비스에서 넘어온 값");
 		System.out.println("등재 신청자 일반조력자 상세보기 요청 들어옴!");
-		model.addAttribute("AppGhDet", service.getGhAppContent(AppNum));
+		model.addAttribute("AppGhDet", service.getGhAppContent(AppNumSeq));
 		return "/app/appDetailNormal";
 	}
 	
 	//등재 신청자 기관추천조력자 상세보기 요청 처리
-	@GetMapping("/appDetailInsRecom/{AppNum}")
-	public String AppDetailInsRecom(@PathVariable int AppNum, Model model) {
+	@GetMapping("/appDetailInsRecom/{AppNumSeq}")
+	public String AppDetailInsRecom(@PathVariable int AppNumSeq, Model model) {
 		System.out.println("등재 신청자 기관추천조력자 상세보기 요청 들어옴!");
-		model.addAttribute("AppRecomDet", service.getInsttAppContent(AppNum));
+		model.addAttribute("AppRecomDet", service.getInsttAppContent(AppNumSeq));
 		return "/app/appDetailInsRecom";
 	}
 	
 	//등재 신청사 통번역인 수정 페이지 요청 처리
-	@GetMapping("/appUpdateTotalTras/{AppNum}")
-	public String AppUpdateTotalTras(@PathVariable int AppNum, Model model) {
+	@GetMapping("/appUpdateTotalTras/{AppNumSeq}")
+	public String AppUpdateTotalTras(@PathVariable int AppNumSeq, Model model) {
 		System.out.println("등재 신청자 통번역인 수정 페이지 요청 들어옴!");
-		model.addAttribute("AppTotalTrasUpdt", service.getTsAppContent(AppNum));
+		model.addAttribute("AppTotalTrasUpdt", service.getTsAppContent(AppNumSeq));
 		return "/app/appUpdateTotalTras";
 	}
 	
 	//등재 신청자 통번역인 수정 요청 처리
 	@PostMapping("/appUpdateTotalTras")
 	public String AppUpdateTotalTras(TsVO tvo) {
-		System.out.println("화면에서 수정된 값 받기" + tvo);
 		System.out.println("등재 신청자 통번역인 수정 요청 들어옴!");
 		service.updateTsApp(tvo);
 		return "redirect:/app/appList?page=1&cpp=10";
 	}
 		
 	//등재 신청자 일반조력자 수정 페이지 요청 처리
-	@GetMapping("/appUpdateNormal/{AppNum}")
-	public String AppUpdateNormal(@PathVariable int AppNum, Model model) {
+	@GetMapping("/appUpdateNormal/{AppNumSeq}")
+	public String AppUpdateNormal(@PathVariable int AppNumSeq, Model model) {
 		System.out.println("등재 신청자 일반조력자 수정 페이지 요청 들어옴!");
-		model.addAttribute("AppGhUpdt", service.getGhAppContent(AppNum));
+		model.addAttribute("AppGhUpdt", service.getGhAppContent(AppNumSeq));
 		return "/app/appUpdateNormal";
 	}
 	
 	//등재 신청자 일반조력자 수정 요청 처리
 	@PostMapping("/appUpdateNormal")
 	public String AppUpdateNormal(GhVO gvo) {
-		System.out.println("화면에서 수정된 값 받기" + gvo);
 		System.out.println("등재 신청자 일반조력자 수정 요청 들어옴!");
 		service.updateGhApp(gvo);
 		return "redirect:/app/appList?page=1&cpp=10";
 	}
 	
 	//등재 신청자 기관추천조력자 수정 페이지 이동 요청 처리
-	@GetMapping("/appUpdateInsRecom/{AppNum}")
-	public String AppUpdateRecom(@PathVariable int AppNum, Model model) {
+	@GetMapping("/appUpdateInsRecom/{AppNumSeq}")
+	public String AppUpdateRecom(@PathVariable int AppNumSeq, Model model) {
 		System.out.println("등재 신청자 기관추천조력자 수정 요청 들어옴!");
-		model.addAttribute("AppRcUpdt", service.getInsttAppContent(AppNum));
+		model.addAttribute("AppRcUpdt", service.getInsttAppContent(AppNumSeq));
 		return "/app/appUpdateInsRecom";
 	}
 	
 	//등재 신청자 기관추천조력자 수정 요청 처리
 	@PostMapping("/appUpdateInsRecom")
 	public String AppUpdateRecom(InsttVO isvo) {
-		System.out.println("화면에서 수정된 값 받기" + isvo);
 		System.out.println("등재 신청자 기관추천조력자 수정 요청 들어옴!");
 		service.updateInsttApp(isvo);
 		return "redirect:/app/appList?page=1&cpp=10";
 	}
 	
 	//등재 신청자 정보 삭제 요청 처리
-	@PostMapping("/appDelete/{AppNum}")
-	public String AppDelete(@PathVariable int AppNum) {
+	@PostMapping("/appDelete/{AppNumSeq}")
+	public String AppDelete(@PathVariable int AppNumSeq) {
 		System.out.println("등재 신청자 삭제 요청 들어옴!");
-		service.deleteApp(AppNum);
+		service.deleteApp(AppNumSeq);
 		return "redirect:/app/appList?page=1&cpp=10";
 	}
 	

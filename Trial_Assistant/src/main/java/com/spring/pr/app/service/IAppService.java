@@ -2,6 +2,7 @@ package com.spring.pr.app.service;
 
 import java.util.List;
 
+import com.spring.pr.command.AppVO;
 import com.spring.pr.command.GhVO;
 import com.spring.pr.command.InsttVO;
 import com.spring.pr.command.TotalApplierVO;
@@ -19,13 +20,13 @@ public interface IAppService {
 	int getAppTotal(PageVO paging);
 	
 	//등재 신청자 상세보기(일반조력자)
-	GhVO getGhAppContent(int AppNum);
+	AppVO getGhAppContent(int AppNumSeq);
 	
 	//등재 신청자 상세보기(통번역인)
-	TsVO getTsAppContent(int AppNum);
+	AppVO getTsAppContent(int AppNumSeq);
 	
 	//등재 신청자 상세보기(기관추천조력자)
-	InsttVO getInsttAppContent(int AppNum);
+	AppVO getInsttAppContent(int AppNumSeq);
 	
 	//등재 신청자 수정(일반조력자)
 	void updateGhApp(GhVO gvo);
@@ -37,6 +38,6 @@ public interface IAppService {
 	void updateInsttApp(InsttVO ivo);
 	
 	//등재 신청자 삭제
-	void deleteApp(int AppNum);
+	void deleteApp(int AppNumSeq);
 	
 }

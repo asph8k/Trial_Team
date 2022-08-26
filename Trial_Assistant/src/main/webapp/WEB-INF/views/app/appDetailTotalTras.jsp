@@ -432,7 +432,7 @@ form {
 							id="delGhBtn">삭제</button>
 						<button class="btn btn-outline-secondary" type="button"
 							id="inputGroupFileAddon04"
-							onclick="location.href='<c:url value="/app/appUpdateTotalTras/${AppTotalTrasDet.appNum}?page=${param.page}"/>'">수정</button>
+							onclick="location.href='<c:url value="/app/appUpdateTotalTras/${AppTotalTrasDet.appNumSeq}?page=${param.page}"/>'">수정</button>
 					</div>
 
 				</div>
@@ -447,7 +447,7 @@ form {
 	<script>
 		$(function() {
 			$('#delGhBtn').click(function() {
-				$('form[name=delTsForm]').attr('action', '<c:url value="/app/appDelete/${AppTotalTrasDet.appNum}"/>');
+				$('form[name=delTsForm]').attr('action', '<c:url value="/app/appDelete/${AppTotalTrasDet.appNumSeq}"/>');
 				$('form[name=delTsForm]').submit();
 			});
 			

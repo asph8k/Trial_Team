@@ -404,7 +404,7 @@ form{
                     <button class="btn btn-outline-secondary" type="button" id="savePdf">파일 출력</button>
 
                     <button class="btn btn-outline-secondary" type="button" id="delGhBtn">삭제</button>
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appUpdateNormal/${AppGhDet.appNum}?page=${param.page}&cpp=10"/>'">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appUpdateNormal/${AppGhDet.appNumSeq}?page=${param.page}&cpp=10"/>'">수정</button>
                 </div>
 
             </div>
@@ -419,7 +419,7 @@ form{
 	<script>
 		$(function() {
 			$('#delGhBtn').click(function() {
-				$('form[name=delGhForm]').attr('action', '<c:url value="/app/appDelete/${AppGhDet.appNum}"/>');
+				$('form[name=delGhForm]').attr('action', '<c:url value="/app/appDelete/${AppGhDet.appNumSeq}"/>');
 				$('form[name=delGhForm]').submit();
 			});
 		});

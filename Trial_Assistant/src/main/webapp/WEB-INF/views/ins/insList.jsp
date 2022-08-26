@@ -290,6 +290,7 @@
         </div>
 
         <div class="division" style="display: flex; justify-content: flex-end; margin-bottom: 10px;" >
+        
           <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 기관명을 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
           <button id="announcement-search-btn">검색</button>
         </div>
@@ -306,8 +307,8 @@
           </thead>
 
           <tbody>
-          	<c:forEach items="${inslist}" var="il">
-          		<form method="post" name="ListForm">
+          	<form method="post" name="ListForm">
+          		<c:forEach items="${inslist}" var="il">
 		            <tr style="border-top : 3px solid #e9ecef">
 		              <td>${il.insNum}</td>
 		              <td>
@@ -316,10 +317,10 @@
 		              <td>${il.insPhone}</td>
 		              <!-- Javascript를 사용해서 날짜 입력받거나  -->
 		              <td><fmt:formatDate value="${il.insRgstr}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
-		              <td><button class="btn del-btn" type="button" id="removeBtn">삭제</button></td>
+		              <td><button class="btn del-btn removeBtn" type="button">삭제</button></td>
 		            </tr>
-	            </form>
-           	</c:forEach>
+           		</c:forEach>
+	        </form>
           </tbody>
         </table>
 
@@ -345,7 +346,7 @@
       </div>
       
       	 <input type="hidden" name="page" value="${pc.paging.pageNum}">
-         <input type="hidden" name="cpp" value="${pc.paging.cpp}">        
+         <input type="hidden" name="cpp" value="${pc.paging.cpp}">  
          <input type="hidden" name="condition" value="${pc.paging.condition}">
          <input type="hidden" name="keyword" value="${pc.paging.keyword}"> 
          </form>
@@ -381,11 +382,14 @@
         document.pageForm.submit();
      });
      
-     $('#removeBtn').click(function() {
+     $('.removeBtn').click(function() {
 		if(confirm("삭제하시겠습니까?")) {
-			$('form[name=ListForm]').attr('action', '<c:url value="/ins/insDelete/${il.insNum}"/>');
+			const insNum = $(this).parent().prev().prev().prev().prev().text();
+			console.log(insNum);
+			
+ 			$('form[name=ListForm]').attr('action', '<c:url value="/ins/insDelete/' + insNum + '"/>');
 			$('form[name=ListForm]').submit();
-		}
+ 		}
 	});
      
    //검색 버튼 이벤트 처리	

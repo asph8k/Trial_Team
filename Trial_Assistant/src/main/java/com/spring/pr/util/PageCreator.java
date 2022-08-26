@@ -25,6 +25,8 @@ public class PageCreator {
 			System.out.println("pc객체의 page: "+page);
 			UriComponents ucp = UriComponentsBuilder.newInstance().queryParam("page", page)
 																  .queryParam("cpp", paging.getCpp())
+																  .queryParam("keyword", paging.getKeyword())
+																  .queryParam("condition", paging.getCondition())
 																  .build();
 			return ucp.toUriString();
 		}

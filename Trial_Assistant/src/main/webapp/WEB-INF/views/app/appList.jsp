@@ -327,6 +327,7 @@
           </thead>
 
           <tbody>
+          <form method="post" name="ListForm">
           	<c:forEach items="${AppList}" var="app">
 	            <tr style="border-top : 3px solid #e9ecef">
 	              <td>${app.appNum}</td>
@@ -351,9 +352,10 @@
 	              <td>${app.appClassification}</td>
 	              <!-- Javascript를 사용해서 날짜 입력받거나  -->
 	              <td><fmt:formatDate value="${app.appDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
-	              <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
+	              <td><button class="btn del-btn removeBtn" type="button" id="inputGroupFileAddon04">삭제</button></td>
 	            </tr>
 			</c:forEach>
+			</form>
           </tbody>
         </table>
 
@@ -406,6 +408,17 @@
 	        document.pageForm.page.value = value;
 	        document.pageForm.submit();
 	     });
+	     
+	     $('.removeBtn').click(function() {
+	 		if(confirm("삭제하시겠습니까?")) {
+	 			const AppNumSeq = $(this).parent().prev().prev().prev().prev().prev().text();
+	 			console.log(AppNumSeq);
+	 			
+	  			$('form[name=ListForm]').attr('action', '<c:url value="/app/appDelete/' + AppNumSeq + '"/>');
+	 			$('form[name=ListForm]').submit();
+	  		}
+	 	});
+	      
 	     
 	//검색 버튼 이벤트 처리	
 	

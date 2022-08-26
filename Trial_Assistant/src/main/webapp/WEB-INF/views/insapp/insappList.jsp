@@ -319,6 +319,7 @@
           </thead>
 
           <tbody>
+          <form method="post" name="ListForm">
           	<c:forEach var="insappLi" items="${insapplist}">
 	            <tr style="border-top : 3px solid #e9ecef">
 	              <td>${insappLi.appNum}</td>
@@ -328,9 +329,10 @@
 	              <td>${insappLi.appInsPhone}</td>
 	              <!-- Javascript를 사용해서 날짜 입력받거나  -->
 	              <td><fmt:formatDate value="${insappLi.appDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
-	              <td><button class="btn del-btn" type="button" id="inputGroupFileAddon04">삭제</button></td>
+	              <td><button class="btn del-btn removeBtn" type="button" id="inputGroupFileAddon04">삭제</button></td>
 	            </tr>
             </c:forEach>
+           </form>
           </tbody>
         </table>
 
@@ -383,12 +385,21 @@
         document.pageForm.submit();
      });
      
+     $('.removeBtn').click(function() {
+ 		if(confirm("삭제하시겠습니까?")) {
+ 			const AppNum = $(this).parent().prev().prev().prev().prev().text();
+ 			console.log(AppNum);
+ 			
+  			$('form[name=ListForm]').attr('action', '<c:url value="/insapp/insappDelete/' + AppNum + '"/>');
+ 			$('form[name=ListForm]').submit();
+  		}
+ 	});
+     
    //검색 버튼 이벤트 처리	
  	
  	$('#announcement-search-btn').click(function() {
  		const keyword = $('#keywordInput').val();
- 		const condition = $('#condition option:selected').val();
- 		location.href="<c:url value='/insapp/insappList&keyword=" + keyword + "&page=1&cpp=10'/>";
+ 		location.href="<c:url value='/insapp/insappList?keyword=" + keyword + "&page=1&cpp=10'/>";
  	});
  	
  	//검색창에서 엔터키 입력 시 이벤트 처리

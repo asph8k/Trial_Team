@@ -20,7 +20,7 @@
 	
 	<sql id="search">
 	   	<if test="keyword != null and keyword != ''"> 		
-	   		AND INS_NAME LIKE '%'||#{keyword}||'%'
+	   		WHERE INS_NAME LIKE '%'||#{keyword}||'%'
 	   	</if>	   	
    </sql>
 	
@@ -43,7 +43,7 @@
 					FROM Ins
 					<include refid="search"/>
 					ORDER BY INS_NUM ASC
-				)tbl
+				) tbl
 			)
 		<![CDATA[
 	      WHERE rn > (#{pageNum}-1) * #{cpp}

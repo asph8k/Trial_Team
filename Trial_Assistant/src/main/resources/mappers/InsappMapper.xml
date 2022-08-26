@@ -53,7 +53,7 @@
 	
 	<sql id="search">
 	   	<if test="keyword != null and keyword != ''"> 		
-	   		AND INS_NAME LIKE '%'||#{keyword}||'%'
+	   		WHERE INS_NAME LIKE '%'||#{keyword}||'%'
 	   	</if>	   	
    	</sql>
 	

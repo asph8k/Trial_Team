@@ -383,7 +383,7 @@ form{
                         <div style="width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
 							신청자 메모</div>
 						<textarea style="width: 100%; resize: none; border-radius: 5px; border: 1px solid #d6d6d6; height: 200px;" name="GhMemo">${AppGhUpdt.ghMemo}</textarea>
-                        <input type="hidden" name="GhNum" value="${AppGhUpdt.ghNum}">
+                        <input type="hidden" name="GhNum" value="${AppGhUpdt.ghNumSeq}">
 					</form>
                     </div>
                     
@@ -392,7 +392,7 @@ form{
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
 
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailNormal/${AppGhUpdt.appNum}?page=${param.page}"/>'">취소</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailNormal/${AppGhUpdt.appNumSeq}?page=${param.page}"/>'">취소</button>
                     <button class="btn btn-outline-secondary" type="button" id="updateGhBtn">수정</button>
                 </div>
 

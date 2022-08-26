@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.pr.app.mapper.IAppMapper;
+import com.spring.pr.command.AppVO;
 import com.spring.pr.command.GhVO;
 import com.spring.pr.command.InsttVO;
 import com.spring.pr.command.TotalApplierVO;
@@ -36,19 +37,19 @@ public class AppService implements IAppService {
 	}
  
 	@Override
-	public GhVO getGhAppContent(int AppNum) {
-		System.out.println(mapper.getGhAppContent(AppNum) + "매퍼에서 넘어온 값");
-		return mapper.getGhAppContent(AppNum);
+	public AppVO getGhAppContent(int AppNumSeq) {
+		System.out.println(mapper.getGhAppContent(AppNumSeq) + "매퍼에서 넘어온 값");
+		return mapper.getGhAppContent(AppNumSeq);
 	}
 
 	@Override
-	public TsVO getTsAppContent(int AppNum) {
-		return mapper.getTsAppContent(AppNum);
+	public AppVO getTsAppContent(int AppNumSeq) {
+		return mapper.getTsAppContent(AppNumSeq);
 	}
 
 	@Override
-	public InsttVO getInsttAppContent(int AppNum) {
-		return mapper.getInsttAppContent(AppNum);
+	public AppVO getInsttAppContent(int AppNumSeq) {
+		return mapper.getInsttAppContent(AppNumSeq);
 	}
 
 	@Override
@@ -68,8 +69,8 @@ public class AppService implements IAppService {
 	}
 
 	@Override
-	public void deleteApp(int AppNum) {
-		mapper.deleteApp(AppNum);
+	public void deleteApp(int AppNumSeq) {
+		mapper.deleteApp(AppNumSeq);
 	}
 
 }

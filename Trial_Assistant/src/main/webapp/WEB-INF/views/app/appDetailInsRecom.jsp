@@ -352,7 +352,7 @@ form{
                             <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppRecomDet.insttAcadBack}" readonly>
 
                             <span class="input-group-text">학력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppRecomDet.insttAcadBakFile}" readonly>
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppRecomDet.insttAcadBackFile}" readonly>
 
                         </div> 
 
@@ -363,7 +363,7 @@ form{
                             <!-- 경력을 어떻게 한줄에 다 적지? -->
 
                             <span class="input-group-text">경력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppRecomDet.insttCarrerBack}" readonly>
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppRecomDet.insttCarrerFile}" readonly>
 
                         </div> 
 
@@ -394,7 +394,7 @@ form{
                     <button class="btn btn-outline-secondary" type="button" id="savePdf">파일 출력</button>
 
                     <button class="btn btn-outline-secondary" type="button" id="delInsReBtn">삭제</button>
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appUpdateInsRecom/${AppRecomDet.appNum}?page=${param.page}&cpp=10"/>'">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appUpdateInsRecom/${AppRecomDet.appNumSeq}?page=${param.page}&cpp=10"/>'">수정</button>
                 </div>
 
             </div>
@@ -408,7 +408,7 @@ form{
 	
 	<script>
 		$('#delInsReBtn').click(function() {
-			$('form[name=delInsReForm]').attr('action', '<c:url value="/app/appDelete/${AppRecomDet.appNum}"/>');
+			$('form[name=delInsReForm]').attr('action', '<c:url value="/app/appDelete/${AppRecomDet.appNumSeq}"/>');
 			$('form[name=delInsReForm]').submit();
 		});
 		

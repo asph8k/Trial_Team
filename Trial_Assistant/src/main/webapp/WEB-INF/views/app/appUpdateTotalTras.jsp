@@ -379,7 +379,7 @@ form{
                             	신청자 메모
                         </div> 
                         <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:200px;" name="TsMemo">${AppTotalTrasUpdt.tsMemo}</textarea>
-                  		<input type="hidden" name="TsNum" value="${AppTotalTrasUpdt.tsNum}">
+                  		<input type="hidden" name="TsNum" value="${AppTotalTrasUpdt.tsNumSeq}">
 					</form>
                     </div>
                     
@@ -388,7 +388,7 @@ form{
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
 
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailTotalTras/${AppTotalTrasUpdt.appNum}?page=${param.page}"/>'">취소</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailTotalTras/${AppTotalTrasUpdt.appNumSeq}?page=${param.page}"/>'">취소</button>
                     <button class="btn btn-outline-secondary" type="button" id="updateTsBtn">수정</button>
                 </div>
 

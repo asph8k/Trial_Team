@@ -347,7 +347,7 @@ form{
                             <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttAcadBack" value="${AppRcUpdt.insttAcadBack}" readonly>
 
                             <span class="input-group-text">학력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttAcadBakFile" value="${AppRcUpdt.insttAcadBakFile}" readonly>
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttAcadBackFile" value="${AppRcUpdt.insttAcadBackFile}" readonly>
 
                         </div> 
 
@@ -357,7 +357,7 @@ form{
                             <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttCarrer" value="${AppRcUpdt.insttCarrer}" readonly>
 
                             <span class="input-group-text">경력 파일</span>
-                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttCarrerBack" value="${AppRcUpdt.insttCarrerBack}" readonly>
+                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="InsttCarrerFile" value="${AppRcUpdt.insttCarrerFile}" readonly>
 
                         </div> 
 
@@ -377,7 +377,7 @@ form{
                             	신청자 메모
                         </div> 
                         <textarea style="width: 100%; resize: none; border-radius: 5px; border:1px solid #d6d6d6; height:200px;" name="InsttMemo">${AppRcUpdt.insttMemo}</textarea>
-                        <input type="hidden" name="InsttNum" value="${AppRcUpdt.insttNum}">
+                        <input type="hidden" name="InsttNum" value="${AppRcUpdt.insttNumSeq}">
 					</form>
                     </div>
                     
@@ -386,7 +386,7 @@ form{
                 <!-- faq를 작성한 사용자만(아이디로 비교) 수정버튼 활성화 -->
                 <div class="notice-regi-btn">
 
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailInsRecom/${AppRcUpdt.appNum}?page=${param.page}"/>'">취소</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/app/appDetailInsRecom/${AppRcUpdt.appNumSeq}?page=${param.page}"/>'">취소</button>
                     <button class="btn btn-outline-secondary" type="button" id="updateRcBtn">수정</button>
                 </div>
 
