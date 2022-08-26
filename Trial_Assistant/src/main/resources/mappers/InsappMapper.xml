@@ -51,6 +51,12 @@
 		<result column="JOINID" property="JoinId"/>
 	</resultMap>
 	
+	<sql id="search">
+	   	<if test="keyword != null and keyword != ''"> 		
+	   		AND INS_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   	</sql>
+	
 	<select id="getInsappList" resultMap="TotalApplierMap">
 		SELECT * FROM
 			(
@@ -59,6 +65,7 @@
 					SELECT ta.app_num_seq, ins.ins_name, ins.ins_phone, ta.app_date
 					FROM Totalapplier ta INNER JOIN Ins ins
 					ON ta.joinid = ins.joinid
+					<include refid="search"/>
 					ORDER BY INS_NUM ASC
 				)tbl
 			)

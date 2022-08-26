@@ -393,7 +393,7 @@
  	$('#announcement-search-btn').click(function() {
  		const keyword = $('#keywordInput').val();
  		const condition = $('#condition option:selected').val();
- 		location.href="<c:url value='/ins/insList?condition=" + condition + "&keyword=" + keyword +  "&page=1&cpp=10'/>";
+ 		location.href="<c:url value='/ins/insList?keyword=" + keyword +  "&page=1&cpp=10'/>";
  	});
  	
  	//검색창에서 엔터키 입력 시 이벤트 처리

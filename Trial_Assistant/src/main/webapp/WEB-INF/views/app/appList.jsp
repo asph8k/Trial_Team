@@ -310,7 +310,7 @@
             <option value="기관추천조력자" ${param.condition == '기관추천조력자'? 'selected' : ''}>기관추천조력자</option>
             <option value="통번역인" ${param.condition == '통번역인'? 'selected' : ''}>통번역인</option>
           </select>
-          <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 아이디 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
+          <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 이름을 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
           <button id="announcement-search-btn">검색</button>
         </div>
 

@@ -304,7 +304,7 @@
         </div>
 
         <div class="announcement-search dropdown" style="width: 500px; display: flex; justify-content: flex-end;">
-          <input type="text" class="announcement-search-input" placeholder="검색할 기관 이름을 입력하세요." />
+          <input type="text" id="keywordInput" class="announcement-search-input" placeholder="검색할 기관 이름을 입력하세요." name="keyword" value="${pc.paging.keyword}"/>
           <button id="announcement-search-btn">검색</button>
         </div>
         </div>
@@ -388,7 +388,7 @@
  	$('#announcement-search-btn').click(function() {
  		const keyword = $('#keywordInput').val();
  		const condition = $('#condition option:selected').val();
- 		location.href="<c:url value='/insapp/insappList?condition=" + condition + "&keyword=" + keyword +  "'/>";
+ 		location.href="<c:url value='/insapp/insappList&keyword=" + keyword + "&page=1&cpp=10'/>";
  	});
  	
  	//검색창에서 엔터키 입력 시 이벤트 처리
