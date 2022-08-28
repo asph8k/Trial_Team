@@ -7,12 +7,11 @@ import com.spring.pr.command.InsttVO;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.command.TsVO;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 public interface ISuppappMapper {
 
 	//보완 요청자 목록
-	List<TotalApplierVO> getSuppappList(SearchVO search);
+	List<TotalApplierVO> getSuppappList(PageVO page);
 	
 	//총 보완 요청자 수
 	int getSuppappTotal(PageVO paging);

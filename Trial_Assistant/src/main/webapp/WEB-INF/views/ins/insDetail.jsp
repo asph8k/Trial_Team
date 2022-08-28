@@ -13,7 +13,7 @@
 
 	<link rel="apple-touch-icon" href="${pageContext.request.contextPath }/resources/images/apple-icon.png" />
     
-    <!-- 페이지 무조건 추가  -->
+	<!-- 페이지 무조건 추가  -->
 	<link rel="shortcut icon" type="image/x-icon"
 		href="${pageContext.request.contextPath }/resources/images/favicon.ico">
 	
@@ -22,8 +22,7 @@
 		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/templatemo.css">
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/resources/css/custom.css">
+	
 	
 	<!-- Load fonts style after rendering the layout styles -->
 	<link rel="stylesheet"
@@ -32,10 +31,11 @@
 		href="${pageContext.request.contextPath}/resources/css/fontawesome.min.css">
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-		
+	
 	<!-- 아이콘 깨지는 것 해결하는 script -->
-	<script src="https://kit.fontawesome.com/22ff043012.js" crossorigin="anonymous"></script>
-		
+	<script src="https://kit.fontawesome.com/22ff043012.js"
+		crossorigin="anonymous"></script>
+	
 	<!-- Start Script -->
 	<script
 		src="${pageContext.request.contextPath }/resources/js/jquery-1.11.0.min.js"></script>
@@ -243,7 +243,7 @@ form{
             <div class="col-lg-3">
                 <ul class="list-unstyled templatemo-accordion">
                   <li class="pb-3">
-                      <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/ins/insList?page=${param.page}&cpp=10"/>'">
+                      <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/ins/insList"/>'">
                       	기관 정보 조회
                       </a>
                   </li>
@@ -313,7 +313,7 @@ form{
                 <div class="notice-regi-btn">
                     <button class="btn btn-outline-secondary" type="button" id="delBtn">삭제</button>
 
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/ins/insUpdate/${insdetail.insNum}?page=${param.page}&cpp=10"/>'">수정</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="location.href='<c:url value="/ins/insUpdate/${insdetail.insNum}"/>'">수정</button>
                 </div>
 
           </div>
@@ -323,15 +323,6 @@ form{
     </section>
 
 		<div id="map"></div>
-	    <!--
-	        구글 맵 지도
-	   
-	    <div class="map">
-	        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12636.30724048323!2d126.896311!3d37.6473982!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33d53c6fd0151b38!2z7Iqk7YOA7ZWE65OcIOqzoOyWkQ!5e0!3m2!1sko!2skr!4v1659532189513!5m2!1sko!2skr" 
-	            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-	        </iframe>
-	    </div>
-	     -->
 </div>
 	
 	<%@ include file="../include/footer1.jsp"%>

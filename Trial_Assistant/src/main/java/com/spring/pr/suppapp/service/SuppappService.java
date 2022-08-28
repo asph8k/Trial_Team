@@ -11,7 +11,6 @@ import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.command.TsVO;
 import com.spring.pr.suppapp.mapper.ISuppappMapper;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 @Service
 public class SuppappService implements ISuppappService {
@@ -20,8 +19,8 @@ public class SuppappService implements ISuppappService {
 	private ISuppappMapper mapper;
 	
 	@Override
-	public List<TotalApplierVO> getSupappList(SearchVO search) {
-		List<TotalApplierVO> list = mapper.getSuppappList(search);
+	public List<TotalApplierVO> getSupappList(PageVO page) {
+		List<TotalApplierVO> list = mapper.getSuppappList(page);
 		return list;
 	}
 	

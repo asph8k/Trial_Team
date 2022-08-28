@@ -13,7 +13,7 @@
 
     <link rel="apple-touch-icon" href="${pageContext.request.contextPath }/resources/images/apple-icon.png" />
     
-    <!-- 페이지 무조건 추가  -->
+	<!-- 페이지 무조건 추가  -->
 	<link rel="shortcut icon" type="image/x-icon"
 		href="${pageContext.request.contextPath }/resources/images/favicon.ico">
 	
@@ -22,8 +22,7 @@
 		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/templatemo.css">
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/resources/css/custom.css">
+	
 	
 	<!-- Load fonts style after rendering the layout styles -->
 	<link rel="stylesheet"
@@ -32,10 +31,11 @@
 		href="${pageContext.request.contextPath}/resources/css/fontawesome.min.css">
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-		
+	
 	<!-- 아이콘 깨지는 것 해결하는 script -->
-	<script src="https://kit.fontawesome.com/22ff043012.js" crossorigin="anonymous"></script>
-		
+	<script src="https://kit.fontawesome.com/22ff043012.js"
+		crossorigin="anonymous"></script>
+	
 	<!-- Start Script -->
 	<script
 		src="${pageContext.request.contextPath }/resources/js/jquery-1.11.0.min.js"></script>
@@ -205,6 +205,20 @@
   margin: 0%;
 }
 
+/* 페이징 디자인 추가하기 */
+#pagination {
+	padding-left: 550px;
+}
+
+#beforeBtn {
+	padding-left: 15px;
+}
+
+.pageBtn{
+	margin-right:10px;
+}
+/* 페이징 디자인 추가하기 */
+
 .announcement-search {
         width: 430px;
         margin-bottom: 10px;
@@ -265,27 +279,27 @@
                   
                   <ul class="list-unstyled templatemo-accordion">
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList?page=1&cpp=10"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/app/appList"/>'">
                           	등재 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList?page=1&cpp=10"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none myInfo" onclick="location.href='<c:url value = "/insapp/insappList"/>'">
                           	기관 신청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList?page=1&cpp=10"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/suppapp/suppappList"/>'">
                           	보완 요청자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList?page=1&cpp=10"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/slctn/slctnList"/>'">
                           	조력자 신청 승인자 정보 조회
                           </a>
                       </li>
                       <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList?page=1&cpp=10"/>'">
+                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" onclick="location.href='<c:url value = "/unq/unqList"/>'">
                           	부적격자 명단 관리
                           </a>
                       </li>
@@ -330,22 +344,22 @@
           <form method="post" name="ListForm">
           	<c:forEach items="${AppList}" var="app">
 	            <tr style="border-top : 3px solid #e9ecef">
-	              <td>${app.appNum}</td>
+	              <td>${app.anmNoSeq}</td>
 	              <td>${app.joinId}</td>
 	              <c:choose>
 	              	<c:when test="${app.appClassification eq '통번역인'}">
 			              <td>
-			              	<a href="<c:url value='/app/appDetailTotalTras/${app.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
+			              	<a href="<c:url value='/app/appDetailTotalTras/${app.anmNoSeq}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
 			              </td>
 	                </c:when>
 	                <c:when test="${app.appClassification eq '일반조력자'}">
 			              <td>
-			              	<a href="<c:url value='/app/appDetailNormal/${app.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
+			              	<a href="<c:url value='/app/appDetailNormal/${app.anmNoSeq}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
 			              </td>
 	                </c:when>
 	                <c:when test="${app.appClassification eq '기관추천조력자'}">
 			              <td>
-			              	<a href="<c:url value='/app/appDetailInsRecom/${app.appNum}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
+			              	<a href="<c:url value='/app/appDetailInsRecom/${app.anmNoSeq}${pc.makeURI(pc.paging.pageNum)}'/>">${app.appName}</a>
 			              </td>
 	                </c:when>
 	              </c:choose>
@@ -359,33 +373,39 @@
           </tbody>
         </table>
 
-		<form action="<c:url value='/app/appList'/>" name="pageForm">
-        <div class="andBtns">
-          <div class="paging-btns">
-          <ul id="pagination" class="pagination pagination-sm">
-	          <c:if test="${pc.prev}">
-	            <li><a href="#" data-pagenum="${pc.beginPage - 1}" style="text-decoration: none;">◀</a></li>
-			  </c:if>
-			  
-			  <c:forEach var="num" begin="${pc.beginPage}" end="${pc.endPage}">
-			  	<li><a href="#" data-pagenum="${num}" class="numBtn ${pc.paging.pageNum == num ? 'page-active' : ''}" style="text-decoration: none;">${num}</a></li>
-			  	<input type="hidden" name="pageNum" value="${num}">
-			  </c:forEach>
-			  
-			  <c:if test="${pc.next}">
-	            <li><a href="#" data-pagenum="${pc.endPage+1}" style="text-decoration: none;">▶</a></li>
-	          </c:if>
-          </ul>
-          </div>
-		
-      </div>
-      
-      	 <input type="hidden" name="page" value="${pc.paging.pageNum}">
-         <input type="hidden" name="cpp" value="${pc.paging.cpp}">        
-         <input type="hidden" name="condition" value="${pc.paging.condition}">
-         <input type="hidden" name="keyword" value="${pc.paging.keyword}"> 
-         </form>   
-    </section>
+				<form action="<c:url value= '/app/appList'/>" name="pageForm">
+					<div class="text-center search-select">
+						<ul id="pagination" class="pagination pagination-sm">
+							<c:if test="${pc.prev }">
+								<!-- 모델 객체로 보내진 pcv라는 이름의 값에서 prev가 true라면 밑의 내용 실행  -->
+								<li><a href="#" id="beforeBtn" class="btn btn-outline-secondary"
+									data-pagenum="${pc.beginPage-1 }">이전</a></li>
+							</c:if>
+
+							<c:forEach var="page" begin="${pc.beginPage }"
+								end="${pc.endPage }">
+								<!-- 페이지 구성  -->
+								<li class="${pc.paging.pageNum == page ? 'active' : '' }" class="pageBtn"><a
+									href="#" data-pagenum="${page}"
+									class="btn btn-outline-secondary" >${page}</a></li>
+							</c:forEach>
+
+							<c:if test="${pc.next}">
+								<li class="pageBtn"><a href="#" class="btn btn-outline-secondary" data-pagenum="${pc.endPage+1 }">다음</a></li>
+							</c:if>
+						</ul>
+
+					</div>
+
+					<!-- 페이지 관련 버튼(이전, 다음 , 페이지 번호) 클릭 시 같이 숨겨서 보내줄 공통 값 -->
+					<input type="hidden" name="pageNum" value="${pc.paging.pageNum }">
+					<input type="hidden" name="cpp" value="${pc.paging.cpp }">
+					<input type="hidden" name="condition"
+						value="${pc.paging.condition }"> <input type="hidden"
+						name="keyword" value="${pc.paging.keyword }">
+					<!-- type을 hidden으로 작성해서 해당 값들을 숨겨서 보내줌  -->
+				</form>
+    	</section>
   
   </div>
 	
@@ -400,14 +420,23 @@
 			  alert(msg);
 		  }
 		 
-	     $('#pagination').on('click', 'a', function(e) {
-	        e.preventDefault(); //a태그의 고유기능 중지.
+		  $('#pagination').on('click', 'a', function(event) {
+				// pagination이라는 아이디의 자식인 a태그에 클릭이 발생한다면 함수 실행
+				event.preventDefault();
+				// a태그의 고유 기능 중지 
 
-	        const value = $(this).data('pagenum'); // -> jQuery
+				// 현재 이벤트가 발생한 요소(버튼)의 data-pageNum의 값을 얻어서 변수에 저장
+				// const value = event.target.dataset.pageNum;
+				const value = $(event.target).data('pagenum');
+				console.log(value);
 
-	        document.pageForm.page.value = value;
-	        document.pageForm.submit();
-	     });
+				// 페이지 버튼들을 감싸고 있는 form태그를 name으로 지목해서 
+				// 그 안에 숨겨져 있는 pageNum이라는 input 태그의 value에 위에서 얻은 
+				// data-pageNum의 값을 삽입한 후 submit
+				// 그러면 서버에서 page의 정보를 다시 받아서 다시 목록 출력 
+				document.pageForm.pageNum.value = value;
+				document.pageForm.submit();
+			});
 	     
 	     $('.removeBtn').click(function() {
 	 		if(confirm("삭제하시겠습니까?")) {

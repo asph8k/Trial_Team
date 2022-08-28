@@ -7,12 +7,11 @@ import com.spring.pr.command.InsttVO;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.command.TsVO;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 public interface ISuppappService {
 
 	//보완 요청자 목록
-	List<TotalApplierVO> getSupappList(SearchVO search);
+	List<TotalApplierVO> getSupappList(PageVO page);
 	
 	//총 등재 신청자
 	int getSupappTotal(PageVO paging);

@@ -8,22 +8,16 @@ import org.springframework.stereotype.Service;
 import com.spring.pr.command.InsVO;
 import com.spring.pr.ins.mapper.IInsMapper;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 @Service
 public class InsService implements IInsService {
 	
 	@Autowired
 	private IInsMapper mapper;
-/*
+
 	@Override
-	public List<InsVO> getInsList(PageVO paging) {
-		return mapper.getInsList(paging);
-	}
-*/
-	@Override
-	public List<InsVO> getInsList(SearchVO search) {
-		List<InsVO> list = mapper.getInsList(search);
+	public List<InsVO> getInsList(PageVO page) {
+		List<InsVO> list = mapper.getInsList(page);
 		return list;
 	}
 	

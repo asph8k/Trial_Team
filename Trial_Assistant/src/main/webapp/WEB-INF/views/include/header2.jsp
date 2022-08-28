@@ -72,10 +72,10 @@
                                 <a class="nav-link" href="shop.html">조력자 신청 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value='/app/appList?page=1'/>">현황조회</a>
+                                <a class="nav-link" href="<c:url value='/app/appList'/>">현황조회</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value='/ins/insList?page=1'/>">기관정보</a>
+                                <a class="nav-link" href="<c:url value='/ins/insList'/>">기관정보</a>
                             </li>
                         </ul>
                     </div>

@@ -68,6 +68,14 @@
 	
 
 	<!-- mapper이름은 이렇게 지정하세요  -->
+	<mybatis-spring:scan 
+		base-package="com.spring.pr.announcement.mapper" />
+	<mybatis-spring:scan 
+		base-package="com.spring.pr.ratingcriteria.mapper" />
+	<mybatis-spring:scan 
+		base-package="com.spring.pr.approval.mapper" />
+	<mybatis-spring:scan 
+		base-package="com.spring.pr.unqualify.mapper" />
 	<mybatis-spring:scan
 		base-package="com.spring.pr.notice.mapper" />
 	<mybatis-spring:scan

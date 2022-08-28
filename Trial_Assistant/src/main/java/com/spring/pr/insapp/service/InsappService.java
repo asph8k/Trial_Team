@@ -9,7 +9,6 @@ import com.spring.pr.command.InsappVO;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.insapp.mapper.IInsappMapper;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 @Service
 public class InsappService implements IInsappService {
@@ -18,8 +17,8 @@ public class InsappService implements IInsappService {
 	private IInsappMapper mapper;
 	
 	@Override
-	public List<TotalApplierVO> getInsappList(SearchVO search) {
-		return mapper.getInsappList(search);
+	public List<TotalApplierVO> getInsappList(PageVO page) {
+		return mapper.getInsappList(page);
 	}
 
 	@Override

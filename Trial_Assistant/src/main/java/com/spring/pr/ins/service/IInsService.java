@@ -4,13 +4,11 @@ import java.util.List;
 
 import com.spring.pr.command.InsVO;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 public interface IInsService {
 
 	//기관 정보 목록
-	//List<InsVO> getInsList(PageVO paging);
-	List<InsVO> getInsList(SearchVO search);
+	List<InsVO> getInsList(PageVO paging);
 	
 	//기관 정보 등록
 	void registIns(InsVO vo);

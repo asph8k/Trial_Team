@@ -1,7 +1,5 @@
 package com.spring.pr.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.insapp.service.IInsappService;
 import com.spring.pr.util.PageCreator;
-import com.spring.pr.util.SearchVO;
+import com.spring.pr.util.PageVO;
 
 @Controller
 @RequestMapping("/insapp")
@@ -25,16 +22,13 @@ public class InsappController {
 	
 	// 기관 신청자 목록 페이지 요청 처리
 	@GetMapping("/insappList")
-	public String InsappList(Model model, SearchVO search, @RequestParam("page") int page) {
+	public String InsappList(Model model, PageVO page) {
 		System.out.println("기관 신청자 목록 페이지 요청이 들어옴!");
-		
-		search.setPageNum(page);
-		List<TotalApplierVO> list = service.getInsappList(search);
+		model.addAttribute("insapplist", service.getInsappList(page));
 		
 		PageCreator pc = new PageCreator();
-		pc.setPaging(search);
-		pc.setArticleTotalCount(service.getInsappTotal(search));
-		model.addAttribute("insapplist", list);
+		pc.setPaging(page);
+		pc.setArticleTotalCount(service.getInsappTotal(page));
 		model.addAttribute("pc", pc);
 		
 		return "/insapp/insappList";

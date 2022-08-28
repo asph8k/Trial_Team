@@ -7,12 +7,11 @@ import com.spring.pr.command.InsappVO;
 import com.spring.pr.command.TotalApplierVO;
 import com.spring.pr.command.UserDetailVO;
 import com.spring.pr.util.PageVO;
-import com.spring.pr.util.SearchVO;
 
 public interface IInsappMapper {
 
 	//기관 신청자 정보 목록
-	List<TotalApplierVO> getInsappList(SearchVO search);
+	List<TotalApplierVO> getInsappList(PageVO page);
 	
 	//총 기관 신청자 목록 수
 	int getInsappTotal(PageVO paging);

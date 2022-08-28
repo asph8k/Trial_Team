@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- 페이지 무조건 추가  -->
+	<!-- 페이지 무조건 추가  -->
 	<link rel="shortcut icon" type="image/x-icon"
 		href="${pageContext.request.contextPath }/resources/images/favicon.ico">
 	
@@ -20,8 +20,7 @@
 		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/templatemo.css">
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/resources/css/custom.css">
+	
 	
 	<!-- Load fonts style after rendering the layout styles -->
 	<link rel="stylesheet"
@@ -30,10 +29,11 @@
 		href="${pageContext.request.contextPath}/resources/css/fontawesome.min.css">
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-		
+	
 	<!-- 아이콘 깨지는 것 해결하는 script -->
-	<script src="https://kit.fontawesome.com/22ff043012.js" crossorigin="anonymous"></script>
-		
+	<script src="https://kit.fontawesome.com/22ff043012.js"
+		crossorigin="anonymous"></script>
+	
 	<!-- Start Script -->
 	<script
 		src="${pageContext.request.contextPath }/resources/js/jquery-1.11.0.min.js"></script>

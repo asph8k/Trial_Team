@@ -1,5 +1,7 @@
 package com.spring.pr.command;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,19 @@ public class AppVO {
 	private String JoinId;
 	private int AppNumSeq;
 	
+	private Date AppDate;
+	private String AppWhtrIngb;
+	private String AppClassification;
+	private String AppName;
+	private String AppMemo;
+	
 	/*GH테이블과 TOTALAPPLLIER 테이블에서 조인해서 조회된 컬럼들
 gh.GH_NUM_SEQ, gh.gh_name, ta.joinid, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
         		gh.gh_job, gh.gh_fax, gh.gh_bank, gh.gh_acc_hol, gh.gh_bank_num, gh.gh_srttn, gh.gh_year,
         		gh.gh_bsns_num, gh.gh_ofc_num, gh.gh_ofc_name, gh.gh_acad_back, gh.gh_acad_back_file,
         		gh.gh_carrer, gh.gh_carrer_file, gh.gh_addr, gh.gh_dtl_addr, gh.gh_dtl_srttn, gh.APP_NUM_SEQ, gh.gh_post_num, gh.gh_memo
 */
+	private int AnmNoSeq;
 	private int GhNumSeq;
 	private String GhName;
 	private String GhSocNum;
@@ -114,5 +123,7 @@ ts.TS_NUM_SEQ, ts.ts_name, ta.joinid, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone
 	private String InsttPostNum;
 	private String InsttMemo;
 	private String InsttSupappMemo;
+	
+	private String UnqReason;
 
 }

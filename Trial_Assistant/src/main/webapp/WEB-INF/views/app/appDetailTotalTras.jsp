@@ -14,43 +14,42 @@
 <link rel="apple-touch-icon"
 	href="${pageContext.request.contextPath }/resources/images/apple-icon.png" />
 
-<!-- 페이지 무조건 추가  -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="${pageContext.request.contextPath }/resources/images/favicon.ico">
-
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/templatemo.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/custom.css">
-
-<!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/fontawesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
-<!-- 아이콘 깨지는 것 해결하는 script -->
-<script src="https://kit.fontawesome.com/22ff043012.js"
-	crossorigin="anonymous"></script>
-
-<!-- Start Script -->
-<script
-	src="${pageContext.request.contextPath }/resources/js/jquery-1.11.0.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/js/jquery-migrate-1.2.1.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/js/bootstrap.bundle.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/js/templatemo.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/custom.js"></script>
-<!-- End Script -->
-
-<!-- 무조건 페이지 추가  -->
+	<!-- 페이지 무조건 추가  -->
+	<link rel="shortcut icon" type="image/x-icon"
+		href="${pageContext.request.contextPath }/resources/images/favicon.ico">
+	
+	
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/templatemo.css">
+	
+	
+	<!-- Load fonts style after rendering the layout styles -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/fontawesome.min.css">
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	
+	<!-- 아이콘 깨지는 것 해결하는 script -->
+	<script src="https://kit.fontawesome.com/22ff043012.js"
+		crossorigin="anonymous"></script>
+	
+	<!-- Start Script -->
+	<script
+		src="${pageContext.request.contextPath }/resources/js/jquery-1.11.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/js/jquery-migrate-1.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/js/templatemo.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/custom.js"></script>
+	<!-- End Script -->
+	
+	<!-- 무조건 페이지 추가  -->
 
 <style>
 .notice-regi-title {
@@ -275,141 +274,94 @@ form {
 				<div>
 					<div id="AppTsContent">
 						<div>
-							<form name="delTsForm" method="post">
+							<form name="delTsForm" action="<c:url value='/app/appTransUnq'/>" method="post">
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">이름</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsName}" readonly> <span
-										class="input-group-text">아이디</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.joinId}" readonly> <span
-										class="input-group-text ">주민등록번호</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsSocNum}" readonly>
+									<span class="input-group-text">이름</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsName}" readonly>
+									<span class="input-group-text">아이디</span>
+								    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" name="JoinId" value="${AppTotalTrasDet.joinId}" readonly> 
+								    <span class="input-group-text ">주민등록번호</span>
+								    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsSocNum}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">집 전화번호</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsHomeNum}" readonly> <span
-										class="input-group-text">핸드폰 번호</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsPhoneNum}" readonly> <span
-										class="input-group-text">E-MAIL</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsEmail}" readonly>
+									<span class="input-group-text">집 전화번호</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsHomeNum}" readonly> 
+									<span class="input-group-text">핸드폰 번호</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsPhoneNum}" readonly> 
+									<span class="input-group-text">E-MAIL</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsEmail}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">은행</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsBank}" readonly> <span
-										class="input-group-text">예금주</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsAccHol}" readonly> <span
-										class="input-group-text">계좌번호</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsBankNum}" readonly>
+									<span class="input-group-text">은행</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsBank}" readonly> 
+									<span class="input-group-text">예금주</span>
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsAccHol}" readonly> 
+									<span class="input-group-text">계좌번호</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsBankNum}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">조력자 구분</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsSrttn}" readonly> <span
-										class="input-group-text">조력자 세부 구분</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsDtlSrttn}" readonly> <span
-										class="input-group-text">조력자 연도</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsYear}" readonly>
+									<span class="input-group-text">조력자 구분</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsSrttn}" readonly> 
+									<span class="input-group-text">조력자 세부 구분</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsDtlSrttn}" readonly> 
+									<span class="input-group-text">조력자 연도</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsYear}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">전문 분야</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsExprt}" readonly> <span
-										class="input-group-text">언어</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsLngg}" readonly> <span
-										class="input-group-text">지정 법원</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsDsgCrt}" readonly>
+									<span class="input-group-text">전문 분야</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsExprt}" readonly> 
+									<span class="input-group-text">언어</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsLngg}" readonly> 
+									<span class="input-group-text">지정 법원</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsDsgCrt}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">활동 가능 지역</span> <input
-										type="text" class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsActiveArea}" readonly>
+									<span class="input-group-text">활동 가능 지역</span>
+								    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsActiveArea}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">학력</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsAcadBack}" readonly> <span
-										class="input-group-text">학력 파일</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsAcadBackFile}" readonly>
+									<span class="input-group-text">학력</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsAcadBack}" readonly> 
+									<span class="input-group-text">학력 파일</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsAcadBackFile}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">경력</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsCarrer}" readonly> <span
-										class="input-group-text">경력 파일</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsCarrerFile}" readonly>
+									<span class="input-group-text">경력</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsCarrer}" readonly> 
+									<span class="input-group-text">경력 파일</span> <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsCarrerFile}" readonly>
 
 								</div>
 
 								<div class="input-group mb-3">
 
-									<span class="input-group-text">기본주소</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsAddr}" readonly> <span
-										class="input-group-text">상세주소</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsDtlAddr}" readonly> <span
-										class="input-group-text">우편번호</span> <input type="text"
-										class="form-control"
-										aria-label="Text input with segmented dropdown button"
-										value="${AppTotalTrasDet.tsPostNum}" readonly>
+									<span class="input-group-text">기본주소</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsAddr}" readonly> 
+									<span class="input-group-text">상세주소</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsDtlAddr}" readonly> 
+									<span class="input-group-text">우편번호</span> 
+									<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="${AppTotalTrasDet.tsPostNum}" readonly>
 
 								</div>
 
@@ -417,6 +369,10 @@ form {
 									style="width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
 									신청자 메모</div>
 								<textarea style="width: 100%; resize: none; border-radius: 5px; border: 1px solid #d6d6d6; height: 200px;" readonly>${AppTotalTrasDet.tsMemo}</textarea>
+								<div
+									style="width: 150px; border-bottom: 4px solid #d8d8d8; margin-bottom: 10px;">
+									부적격 사유</div>
+								<textarea style="width: 100%; resize: none; border-radius: 5px; border: 1px solid #d6d6d6; height: 200px;" name="UnqReason">${AppTotalTrasDet.unqReason}</textarea>
 							</form>
 						</div>
 
@@ -427,12 +383,11 @@ form {
 						<!-- <input type="file" class = "file-btn" aria-label="Upload"> -->
 						<button class="btn btn-outline-secondary" type="button"
 							id="savePdf">파일 출력</button>
-
-						<button class="btn btn-outline-secondary" type="button"
-							id="delGhBtn">삭제</button>
-						<button class="btn btn-outline-secondary" type="button"
-							id="inputGroupFileAddon04"
-							onclick="location.href='<c:url value="/app/appUpdateTotalTras/${AppTotalTrasDet.appNumSeq}?page=${param.page}"/>'">수정</button>
+						<button class="btn btn-outline-secondary" type="button" id="unqBtn">부적격자처리</button>
+                    	<button class="btn btn-outline-secondary" type="button" id="selectBtn">승인처리</button>
+						<button class="btn btn-outline-secondary" type="button" id="delGhBtn">삭제</button>
+						<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+							onclick="location.href='<c:url value="/app/appUpdateTotalTras/${AppTotalTrasDet.anmNoSeq}?page=${param.page}"/>'">수정</button>
 					</div>
 
 				</div>
@@ -451,6 +406,13 @@ form {
 				$('form[name=delTsForm]').submit();
 			});
 			
+			//부적격 처리를 위핸 스크립트
+			$('#unqBtn').click(function() {
+				if(confirm('부적격 처리 하겠습니까?')) {
+					document.delTsForm.submit();
+					alert('부적격 처리 되었습니다.');
+				}
+			});
 			
 		});
 		
